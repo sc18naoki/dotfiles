@@ -9,11 +9,11 @@ nnoremap <silent> <C-g> :call CursorlineToggle()<CR>2<C-g>
 set number
 set display=lastline
 set pumheight=10
-set statusline=%F%m%r%h%w%=[FT=%{&filetype}][ENC=%{&fileencoding}]
+set statusline=%F%m%r%h%w%=[FT=%{&filetype}][ENC=%{&fileencoding}][modified%m%*]
 set laststatus=2
 "backup
-set backup
-set backupdir=~/.local/share/nvim/backup 
+"set backup
+"set backupdir=~/.local/share/nvim/backup 
 set noundofile
 "indent
 set tabstop=4
@@ -33,8 +33,8 @@ nnoremap Y y$
 "insert blank line(:0=zero, not o/O)
 nnoremap <silent> 0 :<C-u>call append(expand('.'), '')<Cr>j
 "cursor:normal mode
-nnoremap j gj
-nnoremap k gk
+nnoremap <silent>j gj
+nnoremap <silent>k gk
 "cursor:insert mode
 inoremap <C-e> <C-o>$
 inoremap <C-a> <C-o>^
@@ -72,6 +72,7 @@ nmap S [SUB]
 "substituiton
 nnoremap [sub]* *:%s/<C-r>///gI<Left><Left><Left>
 nnoremap [sub]s :%s///gI<Left><Left><Left><Left>
+nnoremap [SUB]s :s///gI<Left><Left><Left><Left>
 "Diff last_save/last_backup
 nnoremap <silent> [sub]d :DiffOrig<CR>
 nnoremap <silent> [sub]D :Diff % ~/.local/share/nvim/backup/%~<CR>
@@ -100,8 +101,6 @@ nnoremap <silent> [SUB]r :DQrblackets<CR>
 command DQrblackets s/(/("/ | s/,/","/g | s/)/")/ | noh
 "Vimrc
 nnoremap <silent> [SUB]V :Vimrc<CR>
-"Note
-nnoremap <silent> [SUB]N :Note<CR>
 
 ""user defined function/command
 "Bufgrep <- bufdo-grep <args> and add result to error list;use `:cw` for quickfix
@@ -166,8 +165,6 @@ function! HandleURI()
   endif
 endfunction
 nnoremap <Leader>w :<C-u>call HandleURI()<CR>
-"Note <- take note
-command! Note tablast | tabedit | tcd ~/Google Drive/documents/research/cache
 "Vimrc <- open ~/.vimrc with tab
 command! Vimrc tablast | tabedit ~/.vimrc
 
