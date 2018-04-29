@@ -63,6 +63,7 @@ highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=22
 highlight DiffDelete cterm=bold ctermfg=10 ctermbg=52
 highlight DiffChange cterm=bold ctermfg=10 ctermbg=17
 highlight DiffText   cterm=bold ctermfg=10 ctermbg=21
+highlight NonText cterm=bold ctermfg=96 guifg=96
 
 ""sub command
 nnoremap [sub] <Nop>
@@ -72,7 +73,7 @@ nmap S [SUB]
 "substituiton
 nnoremap [sub]* *:%s/<C-r>///gI<Left><Left><Left>
 nnoremap [sub]s :%s///gI<Left><Left><Left><Left>
-nnoremap [SUB]s :s///gI<Left><Left><Left><Left>
+nnoremap [sub]S :s///gI<Left><Left><Left><Left>
 "Diff last_save/last_backup
 nnoremap <silent> [sub]d :DiffOrig<CR>
 nnoremap <silent> [sub]D :Diff % ~/.local/share/nvim/backup/%~<CR>
@@ -92,8 +93,6 @@ nnoremap <silent> [sub]o :Denite -mode=normal -cursor-wrap -auto-resize outline<
 nnoremap <silent> [sub]f :Denite file_rec<CR>
 "resume latest denite source
 nnoremap <silent> [sub]; :Denite -resume<CR>
-"indeneLine toggle
-nnoremap <silent> [sub]i :IndentLinesToggle<CR>
 "fotmat - "" to each elements within blackets
 nnoremap <silent> [SUB]s :DQsblackets<CR>
 command DQsblackets s/\[/\["/ | s/,/","/g | s/\]/"\]/ | noh
@@ -217,6 +216,8 @@ augroup GfPathGroup
   autocmd!
   autocmd FileType c setlocal path+=/usr/local/include,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/macosx.sdk/usr/include,/Users/naoki/scripts/src/util-linux/util-linux-2.31-rc1/include
 augroup END
+"in-edit assist
+autocmd Filetype c,python,php,ruby,sh set list lcs=tab:\¦\
 
 "----------------------------------------------------------------------------
 "plugin initialization	<-	configuration within ~/.dein{.toml,_lazy.toml}

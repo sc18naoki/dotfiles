@@ -23,15 +23,7 @@ hook_add = '''
 
 [[plugins]]
 repo = 'cohama/lexima.vim'
-on_ft = [ 'python', 'sh', 'c' ]
-
-[[plugins]]
-repo = 'Yggdroot/indentLine'
-on_ft = [ 'python', 'c', 'html', 'php', 'sh' ]
-hook_add = '''
-	let g:indentLine_showFirstIndentLevel = 1
-	let g:indentLine_faster = 1
-'''
+on_ft = [ 'python', 'sh', 'c', 'php' ]
 
 #[[plugins]]
 #repo = 'Shougo/deoplete.nvim'
@@ -58,8 +50,8 @@ repo = 'mattn/emmet-vim'
 on_ft = [ 'html']
 hook_add = '''
 	autocmd FileType html inoremap [emmet] <Nop>
-	autocmd FileType html imap <C-e> [emmet]
-	autocmd FileType html imap <buffer><expr><C-e>
+	autocmd FileType html imap <C-p> [emmet]
+	autocmd FileType html imap <buffer><expr><C-p>
 	\	emmet#isExpandable() ? "\<plug>(emmet-expand-abbr)" :
 	\	"\<tab>"
 	let g:user_emmet_settings = {

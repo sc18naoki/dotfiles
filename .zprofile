@@ -6,7 +6,7 @@ compinit
 # prompt
 autoload -U promptinit
 promptinit
-PROMPT='%F{green}%m@ubuntu:%~%f$'
+PROMPT='%F{green}%m:%~%f$'
 # disable ^S
 stty stop undef
 # history & completion
