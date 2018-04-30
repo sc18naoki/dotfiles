@@ -13,3 +13,6 @@ hook_post_source = '''
 
 [[plugins]]
 repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'

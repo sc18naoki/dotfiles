@@ -98,6 +98,8 @@ nnoremap <silent> [SUB]s :DQsblackets<CR>
 command DQsblackets s/\[/\["/ | s/,/","/g | s/\]/"\]/ | noh
 nnoremap <silent> [SUB]r :DQrblackets<CR>
 command DQrblackets s/(/("/ | s/,/","/g | s/)/")/ | noh
+"nerdtree
+nnoremap <silent> [sub]t :NERDTree<CR>
 "Vimrc
 nnoremap <silent> [SUB]V :Vimrc<CR>
 
