@@ -99,7 +99,7 @@ command DQsblackets s/\[/\["/ | s/,/","/g | s/\]/"\]/ | noh
 nnoremap <silent> [SUB]r :DQrblackets<CR>
 command DQrblackets s/(/("/ | s/,/","/g | s/)/")/ | noh
 "nerdtree
-nnoremap <silent> [sub]t :NERDTree<CR>
+nnoremap <silent> [sub]t :NERDTreeTabsToggle<CR>
 "Vimrc
 nnoremap <silent> [SUB]V :Vimrc<CR>
 

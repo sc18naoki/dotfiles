@@ -16,3 +16,6 @@ repo = 'tpope/vim-surround'
 
 [[plugins]]
 repo = 'scrooloose/nerdtree'
+
+[[plugins]]
+repo = 'jistr/vim-nerdtree-tabs'
