@@ -63,7 +63,7 @@ highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=22
 highlight DiffDelete cterm=bold ctermfg=10 ctermbg=52
 highlight DiffChange cterm=bold ctermfg=10 ctermbg=17
 highlight DiffText   cterm=bold ctermfg=10 ctermbg=21
-highlight NonText cterm=bold ctermfg=96 guifg=96
+highlight NonText cterm=bold ctermfg=248 guifg=248
 
 ""sub command
 nnoremap [sub] <Nop>

@@ -72,4 +72,5 @@ add-zsh-hook precmd _update_vcs_info_msg
 RPROMPT="%1(v|%F{green}%1v%f|)"
 # R
 disable r
-
+# tmux
+set -o ignoreeof # stop tmux from exiting with C-d 
