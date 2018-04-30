@@ -29,9 +29,6 @@ alias gam='git add .;git commit -m "update"'
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
 
-# tmux configuration
-[[ -z "$TMUX" && ! -z "$PS1" ]] && tmux
-
 # function
 # cd-ignore-case
 cd () {

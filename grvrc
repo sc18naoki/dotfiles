@@ -1,6 +1,4 @@
 set theme classic
-map RefView <Enter> <Tab>
-map CommitView <Enter> <Tab>
 map HistoryView tn gt
 map HistoryView tp gT
 map StatusView tn gt

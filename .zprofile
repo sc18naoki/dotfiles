@@ -73,4 +73,16 @@ RPROMPT="%1(v|%F{green}%1v%f|)"
 # R
 disable r
 # tmux
+[[ -z "$TMUX" && ! -z "$PS1" ]] && tmux
 set -o ignoreeof # stop tmux from exiting with C-d 
+#fzf
+export FZF_DEFAULT_OPTS='--height 40% --reverse'
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_TMUX=1
+export FZF_DEFAULT_COMMAND='ag -g ""'
+fzf-history-widget-accept() {
+  fzf-history-widget
+  zle accept-line
+}
+zle     -N     fzf-history-widget-accept
+bindkey '^R' fzf-history-widget-accept
