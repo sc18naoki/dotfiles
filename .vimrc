@@ -102,6 +102,8 @@ command DQrblackets s/(/("/ | s/,/","/g | s/)/")/ | noh
 nnoremap <silent> <Leader>t :NERDTreeTabsToggle<CR>
 "Vimrc
 nnoremap <silent> [SUB]V :Vimrc<CR>
+"neosnippet
+nnoremap <silent> [SUB]E :NeoSnippetEdit<CR>
 
 ""user defined function/command
 "Bufgrep <- bufdo-grep <args> and add result to error list;use `:cw` for quickfix
