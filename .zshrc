@@ -19,6 +19,7 @@ alias vimdiff='nvim -d'
 alias wl='wc -l'
 alias open='xdg-open'
 alias gv='grv'
+alias fzf='fzf-tmux'
 # gui application
 # cd shortcut
 alias hcd='cd ~/Documents/GoogleDrive/help'

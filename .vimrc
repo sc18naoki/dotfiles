@@ -9,7 +9,7 @@ nnoremap <silent> <C-g> :call CursorlineToggle()<CR>2<C-g>
 set number
 set display=lastline
 set pumheight=10
-set statusline=%F%m%r%h%w%=[FT=%{&filetype}][ENC=%{&fileencoding}][modified%m%*]
+set statusline=%F%m%r%h%w%=[FT=%{&filetype}][ENC=%{&fileencoding}]
 set laststatus=2
 "backup
 "set backup
@@ -38,10 +38,10 @@ nnoremap <silent>k gk
 "cursor:insert mode
 inoremap <C-e> <C-o>$
 inoremap <C-a> <C-o>^
-inoremap <C-h> <Left>
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
 inoremap <C-j> <Down>
 inoremap <C-k> <UP>
-inoremap <C-l> <Right>
 "cursor:command mode
 cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
@@ -99,7 +99,7 @@ command DQsblackets s/\[/\["/ | s/,/","/g | s/\]/"\]/ | noh
 nnoremap <silent> [SUB]r :DQrblackets<CR>
 command DQrblackets s/(/("/ | s/,/","/g | s/)/")/ | noh
 "nerdtree
-nnoremap <silent> [sub]t :NERDTreeTabsToggle<CR>
+nnoremap <silent> <Leader>t :NERDTreeTabsToggle<CR>
 "Vimrc
 nnoremap <silent> [SUB]V :Vimrc<CR>
 
@@ -222,9 +222,8 @@ augroup END
 autocmd Filetype c,python,php,ruby,sh set list lcs=tab:\¦\
 
 "----------------------------------------------------------------------------
-"plugin initialization	<-	configuration within ~/.dein{.toml,_lazy.toml}
+"plugin initialization
 "----------------------------------------------------------------------------
-""dein.vim
 if &compatible
   set nocompatible
 endif
@@ -254,8 +253,3 @@ if dein#check_install()
 endif
 filetype plugin indent on
 syntax on
-
-"----------------------------------------------------------------------------
-"etc:documentation for trouble shooting
-"----------------------------------------------------------------------------
-"when runtimepath is redefined within vimrc, 'syntax on' must be written after that line.
