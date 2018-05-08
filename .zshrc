@@ -23,6 +23,7 @@ alias fzf='fzf-tmux'
 # gui application
 # cd shortcut
 alias hcd='cd ~/Documents/GoogleDrive/help'
+alias ccd='cd ~/usr/src/dotfiles/'
 # git alias
 alias gam='git add .;git commit -m "update"'
 
@@ -57,3 +58,7 @@ cd () {
       return 3;;
   esac
 }
+
+# tmux; this line is prerequisite, not working with .zprofile
+[[ -z "$TMUX" && ! -z "$PS1" ]] && tmux
+set -o ignoreeof # stop tmux from exiting with C-d 

@@ -15,6 +15,7 @@ set laststatus=2
 "set backup
 "set backupdir=~/.local/share/nvim/backup 
 set noundofile
+set noswapfile
 "indent
 set tabstop=4
 set shiftwidth=4
@@ -76,18 +77,18 @@ nnoremap [sub]s :%s///gI<Left><Left><Left><Left>
 nnoremap [sub]S :s///gI<Left><Left><Left><Left>
 "Diff last_save/last_backup
 nnoremap <silent> [sub]d :DiffOrig<CR>
-nnoremap <silent> [sub]D :Diff % ~/.local/share/nvim/backup/%~<CR>
 ""plugins/extensions
 "buffer (list,reload,next,previous)
 set hidden
 nnoremap <silent> [sub]l :Denite -mode=normal -cursor-wrap -winheight=16 buffer<CR>
-nnoremap <silent> [sub]r :BufDel<CR>
+nnoremap <silent> <Leader>d :BufDel<CR>
 nnoremap <silent> [sub]n :bn<CR>
 nnoremap <silent> [sub]p :bp<CR>
-nnoremap [sub]b :Bufgrep ""<Left>
+nnoremap [SUB]B :Bufgrep ""<Left>
+nnoremap [SUB]C :CWnow<CR>
 "search (line,history,grep,outline,file_rec)
 nnoremap <silent> [sub]/ :Denite line<CR>
-nnoremap <silent> [sub]y :Denite -mode=normal -winheight=10 file_old<CR>
+nnoremap <silent> [sub]y :Denite -reversed -mode=normal -winheight=10 file_old<CR>
 nnoremap <silent> [sub]g :Denite -no-empty grep<CR>
 nnoremap <silent> [sub]o :Denite -mode=normal -cursor-wrap -auto-resize outline<CR>
 nnoremap <silent> [sub]f :Denite file_rec<CR>
@@ -108,6 +109,8 @@ nnoremap <silent> [SUB]E :NeoSnippetEdit<CR>
 ""user defined function/command
 "Bufgrep <- bufdo-grep <args> and add result to error list;use `:cw` for quickfix
 command -nargs=1 Bufgrep cexpr "" | bufdo vimgrepadd <args> %
+"open cwindow
+command! CWnow tablast | tabedit | cwindow
 "Comp <- copare files side by side
 function! s:compare(...)
   if a:0 == 1
@@ -221,7 +224,7 @@ augroup GfPathGroup
   autocmd FileType c setlocal path+=/usr/local/include,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/macosx.sdk/usr/include,/Users/naoki/scripts/src/util-linux/util-linux-2.31-rc1/include
 augroup END
 "in-edit assist
-autocmd Filetype c,python,php,ruby,sh set list lcs=tab:\¦\
+autocmd Filetype c,python,php,ruby,sh set list lcs=tab:\¦\ 
 
 "----------------------------------------------------------------------------
 "plugin initialization
