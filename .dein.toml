@@ -1,4 +1,10 @@
 ### .dein.toml
+#
+# if in trouble,
+# 1). sudo apt-get update neovim ; correct?
+# 2). pip install --upgrade neovim
+# 3). (on vim) :UpdateRemotePlugins,:checkhealth,:call dein#update()
+#
 
 [[plugins]]
 repo = 'Shougo/dein.vim'
@@ -22,3 +28,10 @@ repo = 'jistr/vim-nerdtree-tabs'
 
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+# when loaded with fugitive & statusline of it enabled, error on loading occurs.
+[[plugins]]
+repo = 'tpope/vim-obsession'

@@ -5,17 +5,15 @@
 "configuration
 "----------------------------------------------------------------------------
 "appearance
-nnoremap <silent> <C-g> :call CursorlineToggle()<CR>2<C-g>
 set number
 set display=lastline
 set pumheight=10
-set statusline=%F%m%r%h%w%=[FT=%{&filetype}][ENC=%{&fileencoding}]
+set statusline=%y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}\ %r%h%w%F%m%=ROW=%l/%L,COL=%c\ %{ObsessionStatus()}%{fugitive#statusline()}
 set laststatus=2
 "backup
-"set backup
-"set backupdir=~/.local/share/nvim/backup 
+set backup
+set backupdir=~/.local/share/nvim/backup 
 set noundofile
-set noswapfile
 "indent
 set tabstop=4
 set shiftwidth=4
@@ -88,7 +86,7 @@ nnoremap [SUB]B :Bufgrep ""<Left>
 nnoremap [SUB]C :CWnow<CR>
 "search (line,history,grep,outline,file_rec)
 nnoremap <silent> [sub]/ :Denite line<CR>
-nnoremap <silent> [sub]y :Denite -reversed -mode=normal -winheight=10 file_old<CR>
+nnoremap <silent> [sub]y :Denite -mode=normal -winheight=10 file_old<CR>
 nnoremap <silent> [sub]g :Denite -no-empty grep<CR>
 nnoremap <silent> [sub]o :Denite -mode=normal -cursor-wrap -auto-resize outline<CR>
 nnoremap <silent> [sub]f :Denite file_rec<CR>
@@ -100,11 +98,19 @@ command DQsblackets s/\[/\["/ | s/,/","/g | s/\]/"\]/ | noh
 nnoremap <silent> [SUB]r :DQrblackets<CR>
 command DQrblackets s/(/("/ | s/,/","/g | s/)/")/ | noh
 "nerdtree
-nnoremap <silent> <Leader>t :NERDTreeTabsToggle<CR>
+nnoremap <silent> <Leader>n :NERDTreeTabsToggle<CR>
 "Vimrc
-nnoremap <silent> [SUB]V :Vimrc<CR>
+nnoremap <silent> [SUB]v :Vimrc<CR>
+nnoremap <silent> [SUB]V :Vimrcall<CR>
 "neosnippet
 nnoremap <silent> [SUB]E :NeoSnippetEdit<CR>
+"force write ReadOnly;manual operation is mandatory!!
+nnoremap [SUB]W :w !sudo tee % > /dev/null
+"fugitive conf
+nnoremap <Leader>s :Gstatus<CR>
+"vim-obsession
+nnoremap [SUB]o :Obsession<CR>
+nnoremap <Leader>o :Obsession!<CR>
 
 ""user defined function/command
 "Bufgrep <- bufdo-grep <args> and add result to error list;use `:cw` for quickfix
@@ -128,14 +134,6 @@ function! s:compare(...)
   endif
 endfunction
 command! -bar -nargs=+ -complete=file Compare  call s:compare(<f-args>)
-"CursorlineToggle <- toggle cursorline on/off
-function CursorlineToggle()
-	if &cursorline
-		setlocal nocursorline
-	else
-		setlocal cursorline
-	endif
-endfunction
 "DeleteHiddenBuffers <- delete hidden buffer
 function DeleteHiddenBuffers()
     let tpbl=[]
@@ -173,6 +171,7 @@ endfunction
 nnoremap <Leader>w :<C-u>call HandleURI()<CR>
 "Vimrc <- open ~/.vimrc with tab
 command! Vimrc tablast | tabedit ~/.vimrc
+command! Vimrcall tablast | tabedit ~/.vimrc | tabedit ~/.dein.toml | tabedit ~/.dein_lazy.toml
 
 ""tab control
 function! s:SID_PREFIX()
@@ -206,8 +205,8 @@ for n in range(1, 9)
   execute 'nnoremap <silent> [Tab]'.n  ':<C-u>tabnext'.n.'<CR>'
 endfor
 "create,edit,x[close],next(last),previous(first),only
-map <silent> [Tab]c :tablast <bar> tabnew<CR>
-map <silent> [Tab]x :tabclose<CR>
+map <silent> [Tab]t :tablast <bar> tabnew<CR>
+map <silent> [Tab]w :tabclose<CR>
 map <silent> [Tab]n :tabnext<CR>
 map <silent> [Tab]N :tabl<CR>
 map <silent> [Tab]p :tabprevious<CR>
@@ -258,3 +257,4 @@ if dein#check_install()
 endif
 filetype plugin indent on
 syntax on
+

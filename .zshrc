@@ -17,15 +17,18 @@ alias vi='nvim'
 alias vim='nvim'
 alias vimdiff='nvim -d'
 alias wl='wc -l'
-alias open='xdg-open'
-alias gv='grv'
 alias fzf='fzf-tmux'
-# gui application
+alias open='xdg-open'
+# git shortcut
+alias gs='git status'
+alias gl='git log --oneline'
+alias gb='git branch --list'
+alias ga='git branch -a'
+alias gam='git add .;git commit -m "update"'
+alias gv='grv'
 # cd shortcut
 alias hcd='cd ~/Documents/GoogleDrive/help'
 alias ccd='cd ~/usr/src/dotfiles/'
-# git alias
-alias gam='git add .;git commit -m "update"'
 
 # minor amendment:even for clipboard integration of vim, required.
 alias pbcopy='xsel --clipboard --input'

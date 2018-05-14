@@ -6,9 +6,7 @@ compinit
 # prompt
 autoload -U promptinit
 promptinit
-PROMPT='%m:%F{green}%~$%f'
-# disable ^S
-stty stop undef
+PROMPT='%F{green}[naoki@ubuntu]%~$%f'
 # history & completion
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 export HISTFILE=${HOME}/.zhistory
@@ -26,6 +24,8 @@ setopt hist_no_store
 setopt hist_expand
 setopt inc_append_history
 bindkey "^R" history-incremental-search-backward
+# etc
+stty stop undef
 
 # VARIABLE
 export EDITOR=nvim
@@ -33,17 +33,21 @@ bindkey -e
 export MANPAGER="nvim -c 'set ft=man' -"
 export XDG_CONFIG_HOME=~/.config
 export LANG=en_US.UTF-8
+export VBACKUPDIR='~/.local/share/nvim/backup'
 # PATH
-PATH="/home/naoki/usr/local/anaconda3/bin:/home/naoki/usr/bin:$PATH"
-#export MANPATH=""
+PATH="/home/naoki/usr/local/anaconda3/bin:/home/naoki/usr/bin:/home/naoki/.config/composer/vendor/bin:$PATH"
 # LANGUAGE
 # -> python
 export PYENV_ROOT="${HOME}/.pyenv"
-export PATH="${PYENV_ROOT}/bin:$PATH"
+PATH="${PYENV_ROOT}/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 # -> ruby
-#eval "$(rbenv init -)"
+PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+# -> php
+export PATH="/home/naoki/.phpenv/bin:$PATH"
+eval "$(phpenv init -)"
 # avoid duplication
 typeset -U path PATH
 
@@ -89,4 +93,3 @@ fzf-history-widget-accept() {
 }
 zle     -N     fzf-history-widget-accept
 bindkey '^R' fzf-history-widget-accept
-
