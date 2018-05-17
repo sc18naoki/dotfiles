@@ -6,7 +6,7 @@ compinit
 # prompt
 autoload -U promptinit
 promptinit
-PROMPT='%F{green}[naoki@ubuntu]%~$%f'
+PROMPT='%F{green}naoki@ubuntu:%f%~%F{green}$%f'
 # history & completion
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 export HISTFILE=${HOME}/.zhistory
@@ -45,9 +45,9 @@ eval "$(pyenv virtualenv-init -)"
 # -> ruby
 PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
-# -> php
-export PATH="/home/naoki/.phpenv/bin:$PATH"
-eval "$(phpenv init -)"
+## -> php
+#export PATH="/home/naoki/.phpenv/bin:$PATH"
+#eval "$(phpenv init -)"
 # avoid duplication
 typeset -U path PATH
 
