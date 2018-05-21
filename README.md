@@ -1,22 +1,38 @@
-# dotfiles
+# dotfiles: restore configurations & quicklook for recommended tools
 
-please be sure this is README...,right?
+### overview
+
+1. recommended tools
+
+2. contents description
+
+3. etcetera
 
 ---
 
-## TODO UPDATE
+## 1. recommended tools (w/o them, usability of each conf files aren't garanteed)
 
-**installs**
+#### {core}
 
-- fzf
+* zsh
 
-- grv
+* neovim
 
-- rettach-to-user-namespace
+* anaconda(python3)
 
-**modification**
+* tmux
 
-- fzf:keybinds must be enabled after installation
+* fzf
 
-- tmux:as prerequisite for integration clipboard, comment out "reattach-to..."
+#### {additional}
 
+* grv
+
+## 2. contents description
+
+./	= dotfiles
+./README.md	= describe this repo
+./doc/	= documentation for each configuratio system
+./tools/	= tool specific configuration
+
+## 3. etcetera

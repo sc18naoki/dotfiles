@@ -1,0 +1,13 @@
+# configure key repeat speed
+
+---
+
+1. keyrepeat
+
+`xset r rate 200 60`
+
+2. config file
+
+with xset, you can configure overall X window system.
+
+if you prefer, add lines to "~/.xinitrc" or "~/.xsession".
