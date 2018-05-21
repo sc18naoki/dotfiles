@@ -31,8 +31,11 @@
 ## 2. contents description
 
 ./	= dotfiles
+
 ./README.md	= describe this repo
+
 ./doc/	= documentation for each configuratio system
+
 ./tools/	= tool specific configuration
 
 ## 3. etcetera
