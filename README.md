@@ -1,6 +1,8 @@
-# dotfiles: restore configurations & quicklook for recommended tools
+# dotfiles
 
-### overview
+restore configurations & show list of tools
+
+### &lt;overview&gt;
 
 1. recommended tools
 
@@ -10,7 +12,9 @@
 
 ---
 
-## 1. recommended tools (w/o them, usability of each conf files aren't garanteed)
+## 1. recommended tools
+
+w/o following tools, usability of each conf files aren't garanteed.
 
 #### {core}
 
@@ -36,6 +40,6 @@
 
 ./doc/	= documentation for each configuratio system
 
-./tools/	= tool specific configuration
+./tools/	= tool specific configuration, section {additional} are given its configuration here.
 
 ## 3. etcetera
