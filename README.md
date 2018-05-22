@@ -30,6 +30,8 @@ restore configurations & show list of tools
 
 * grv
 
+* ag(the-silver-searcher)
+
 ### 2. structure
 
 ./	= dotfiles

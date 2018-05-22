@@ -82,8 +82,6 @@ nnoremap <silent> [sub]l :Denite -mode=normal -cursor-wrap -winheight=16 buffer<
 nnoremap <silent> <Leader>d :BufDel<CR>
 nnoremap <silent> [sub]n :bn<CR>
 nnoremap <silent> [sub]p :bp<CR>
-nnoremap [SUB]B :Bufgrep ""<Left>
-nnoremap [SUB]C :CWnow<CR>
 "search (line,history,grep,outline,file_rec)
 nnoremap <silent> [sub]/ :Denite line<CR>
 nnoremap <silent> [sub]y :Denite -mode=normal -winheight=10 file_old<CR>
