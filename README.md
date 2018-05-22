@@ -14,9 +14,7 @@ restore configurations & show list of tools
 
 ## 1. recommended tools
 
-w/o following tools, usability of each conf files aren't garanteed.
-
-#### {core}
+#### <u>core</u>
 
 * zsh
 
@@ -28,7 +26,7 @@ w/o following tools, usability of each conf files aren't garanteed.
 
 * fzf
 
-#### {additional}
+#### <u>additional</u>
 
 * grv
 
@@ -38,8 +36,10 @@ w/o following tools, usability of each conf files aren't garanteed.
 
 ./README.md	= describe this repo
 
-./doc/	= documentation for each configuratio system
+./env/	= customize guideline for shell environment
 
-./tools/	= tool specific configuration, section {additional} are given its configuration here.
+./tools/	= tool specific configuration, of section "additional"
+
+./GUI/	= settings/requiremnt or else of GUI applications
 
 ## 3. etcetera

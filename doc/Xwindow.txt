@@ -1,9 +1,0 @@
-# X window system
-
----
-
-1. config file
-
-with xset, you can configure overall X window system.
-
-if you prefer, add lines to "~/.xinitrc" or "~/.xsession".
