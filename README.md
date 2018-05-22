@@ -6,9 +6,9 @@ restore configurations & show list of tools
 
 1. requirement
 
-2. directory
+2. structure
 
-3. here
+3. on this directory
 
 ---
 
@@ -30,7 +30,7 @@ restore configurations & show list of tools
 
 * grv
 
-### 2. contents description
+### 2. structure
 
 ./	= dotfiles
 
@@ -42,7 +42,7 @@ restore configurations & show list of tools
 
 ./GUI/	= settings/requiremnt or else of GUI applications
 
-### 3. here
+### 3. on this directory
 
 .zshrc
 .zprofile
