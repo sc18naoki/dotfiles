@@ -4,15 +4,15 @@ restore configurations & show list of tools
 
 ### &lt;overview&gt;
 
-1. recommended tools
+1. requirement
 
-2. contents description
+2. directory
 
-3. etcetera
+3. here
 
 ---
 
-## 1. recommended tools
+### 1. requirement
 
 #### <u>core</u>
 
@@ -30,7 +30,7 @@ restore configurations & show list of tools
 
 * grv
 
-## 2. contents description
+### 2. contents description
 
 ./	= dotfiles
 
@@ -42,4 +42,12 @@ restore configurations & show list of tools
 
 ./GUI/	= settings/requiremnt or else of GUI applications
 
-## 3. etcetera
+### 3. here
+
+.zshrc
+.zprofile
+.vimrc
+.dein.toml
+.dein_lazy.toml
+.inputrc
+.tmux.conf

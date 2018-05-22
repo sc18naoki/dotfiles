@@ -10,4 +10,4 @@ if you prefer, add lines to "~/.xinitrc" or "~/.xsession".
 
 2. repo
 
-configuration file exists on root directory of this repository.
+configuration file exists here
