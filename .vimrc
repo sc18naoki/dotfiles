@@ -107,8 +107,8 @@ nnoremap [SUB]W :w !sudo tee % > /dev/null
 "fugitive conf
 nnoremap <Leader>s :Gstatus<CR>
 "vim-obsession
-nnoremap [SUB]o :Obsession<CR>
-nnoremap <Leader>o :Obsession!<CR>
+nnoremap <Leader>o :Obsession<CR>
+nnoremap <Leader>O :Obsession!<CR>
 
 ""user defined function/command
 "Bufgrep <- bufdo-grep <args> and add result to error list;use `:cw` for quickfix

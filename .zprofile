@@ -32,7 +32,6 @@ export EDITOR=nvim
 bindkey -e
 export MANPAGER="nvim -c 'set ft=man' -"
 export XDG_CONFIG_HOME=~/.config
-export LANG=en_US.UTF-8
 export VBACKUPDIR='~/.local/share/nvim/backup'
 # PATH
 PATH="/home/naoki/usr/local/anaconda3/bin:/home/naoki/usr/bin:/home/naoki/.config/composer/vendor/bin:$PATH"
@@ -50,6 +49,9 @@ eval "$(rbenv init -)"
 #eval "$(phpenv init -)"
 # avoid duplication
 typeset -U path PATH
+## for these environment variables, written under "/etc/profile"
+#export LANG=en_US.UTF-8
+#export LC_TIME=en_US.UTF-8
 
 # CLI tools
 # git
