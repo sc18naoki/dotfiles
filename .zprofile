@@ -10,7 +10,7 @@ PROMPT='%F{green}naoki@ubuntu:%f%~%F{green}$%f'
 # history & completion
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 export HISTFILE=${HOME}/.zhistory
-export HISTSIZE=1000
+export HISTSIZE=10000
 export SAVEHIST=100000
 setopt hist_ignore_dups
 setopt EXTENDED_HISTORY

@@ -32,6 +32,8 @@ repo = 'Shougo/neosnippet-snippets'
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 
-# when loaded with fugitive & statusline of it enabled, error on loading occurs.
 [[plugins]]
 repo = 'tpope/vim-obsession'
+
+[[plugins]]
+repo = 'flazz/vim-colorschemes'

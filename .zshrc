@@ -29,6 +29,10 @@ alias gv='grv'
 # cd shortcut
 alias hcd='cd ~/Documents/GoogleDrive/help'
 alias ccd='cd ~/usr/src/dotfiles/'
+# execute on filetype
+alias -s html=vivaldi
+alias -s md=vivaldi
+alias -s vim='nvim -S'
 
 # minor amendment:even for clipboard integration of vim, required.
 alias pbcopy='xsel --clipboard --input'
@@ -61,6 +65,8 @@ cd () {
       return 3;;
   esac
 }
+
+## plugin
 
 # tmux; this line is prerequisite, not working with .zprofile
 [[ -z "$TMUX" && ! -z "$PS1" ]] && tmux

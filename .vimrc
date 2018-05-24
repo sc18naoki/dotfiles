@@ -47,6 +47,11 @@ cnoremap <C-f> <Right>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 cnoremap <C-k> <C-E><C-U>
+"window resize;horizontally{increase/decrease},vertically{increase/decrease}
+nnoremap <silent>+ 3<C-w>+ 
+nnoremap <silent>_ 3<C-w>- 
+nnoremap <silent>= 3<C-w>> 
+nnoremap <silent>- 3<C-w>< 
 "remenber last cursor position
 augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -254,5 +259,5 @@ if dein#check_install()
   call dein#install()
 endif
 filetype plugin indent on
-syntax on
+syntax enable
 
