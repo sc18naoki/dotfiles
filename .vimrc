@@ -227,11 +227,21 @@ autocmd Filetype c,python,php,ruby,sh set list lcs=tab:\¦\
 
 "ctags;want to apply only when needed. b/c this will be done when edit ALWAYS!!
 "つーかタグジャンプ出来ないときに手動でやったらええやんけ。
+"やっぱめんどい。書くか。
 set tags=.tags;~
 "augroup ctags
 "  autocmd!
 "  autocmd BufWritePost * silent !ctags -R -f .tags
 "augroup END
+"function! s:execute_ctags() abort
+"  let tag_name = '.tags'
+"  let tags_path = findfile(tag_name, '.;')
+"  if tags_path ==# ''
+"    return
+"  endif
+"  let tags_dirpath = fnamemodify(tags_path, ':p:h')
+"  execute 'silent !cd' tags_dirpath '&& ctags -R -f' tag_name '2> /dev/null &'
+"endfunction
 
 "----------------------------------------------------------------------------
 "plugin initialization
