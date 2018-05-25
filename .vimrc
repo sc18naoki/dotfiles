@@ -77,7 +77,6 @@ nmap S [SUB]
 "substituiton
 nnoremap [sub]* *:%s/<C-r>///gI<Left><Left><Left>
 nnoremap [sub]s :%s///gI<Left><Left><Left><Left>
-nnoremap [sub]S :s///gI<Left><Left><Left><Left>
 "Diff last_save/last_backup
 nnoremap <silent> [sub]d :DiffOrig<CR>
 ""plugins/extensions
@@ -91,7 +90,7 @@ nnoremap <silent> [sub]p :bp<CR>
 nnoremap <silent> [sub]/ :Denite line<CR>
 nnoremap <silent> [sub]y :Denite -mode=normal -winheight=10 file_old<CR>
 nnoremap <silent> [sub]g :Denite -no-empty grep<CR>
-nnoremap <silent> [sub]o :Denite -mode=normal -cursor-wrap -auto-resize outline<CR>
+nnoremap <silent> [sub]o :Denite -cursor-wrap -auto-resize outline<CR>
 nnoremap <silent> [sub]f :Denite file_rec<CR>
 "resume latest denite source
 nnoremap <silent> [sub]; :Denite -resume<CR>
@@ -118,8 +117,6 @@ nnoremap <Leader>O :Obsession!<CR>
 ""user defined function/command
 "Bufgrep <- bufdo-grep <args> and add result to error list;use `:cw` for quickfix
 command -nargs=1 Bufgrep cexpr "" | bufdo vimgrepadd <args> %
-"open cwindow
-command! CWnow tablast | tabedit | cwindow
 "Comp <- copare files side by side
 function! s:compare(...)
   if a:0 == 1
@@ -228,6 +225,14 @@ augroup END
 "in-edit assist
 autocmd Filetype c,python,php,ruby,sh set list lcs=tab:\¦\ 
 
+"ctags;want to apply only when needed. b/c this will be done when edit ALWAYS!!
+"つーかタグジャンプ出来ないときに手動でやったらええやんけ。
+set tags=.tags;~
+"augroup ctags
+"  autocmd!
+"  autocmd BufWritePost * silent !ctags -R -f .tags
+"augroup END
+
 "----------------------------------------------------------------------------
 "plugin initialization
 "----------------------------------------------------------------------------
@@ -259,5 +264,5 @@ if dein#check_install()
   call dein#install()
 endif
 filetype plugin indent on
-syntax enable
+syntax on
 
