@@ -13,8 +13,10 @@ set laststatus=2
 "backup
 set backup
 set backupdir=~/.local/share/nvim/backup 
-set noundofile
+set undofile
+set undodir=~/.local/share/nvim/backup
 "indent
+set expandtab
 set tabstop=4
 set shiftwidth=4
 set autoindent
@@ -69,7 +71,7 @@ highlight DiffChange cterm=bold ctermfg=10 ctermbg=17
 highlight DiffText   cterm=bold ctermfg=10 ctermbg=21
 highlight NonText cterm=bold ctermfg=248 guifg=248
 
-""sub command
+""sub prefix
 nnoremap [sub] <Nop>
 nmap s [sub]
 nnoremap [SUB] <Nop>
@@ -79,44 +81,47 @@ nnoremap [sub]* *:%s/<C-r>///gI<Left><Left><Left>
 nnoremap [sub]s :%s///gI<Left><Left><Left><Left>
 "Diff last_save/last_backup
 nnoremap <silent> [sub]d :DiffOrig<CR>
-""plugins/extensions
 "buffer (list,reload,next,previous)
 set hidden
-nnoremap <silent> [sub]l :Denite -mode=normal -cursor-wrap -winheight=16 buffer<CR>
-nnoremap <silent> <Leader>d :BufDel<CR>
 nnoremap <silent> [sub]n :bn<CR>
 nnoremap <silent> [sub]p :bp<CR>
-"search (line,history,grep,outline,file_rec)
-nnoremap <silent> [sub]/ :Denite line<CR>
-nnoremap <silent> [sub]y :Denite -mode=normal -winheight=10 file_old<CR>
-nnoremap <silent> [sub]g :Denite -no-empty grep<CR>
-nnoremap <silent> [sub]o :Denite -cursor-wrap -auto-resize outline<CR>
-nnoremap <silent> [sub]f :Denite file_rec<CR>
-"resume latest denite source
-nnoremap <silent> [sub]; :Denite -resume<CR>
-"fotmat - "" to each elements within blackets
-nnoremap <silent> [SUB]s :DQsblackets<CR>
-command DQsblackets s/\[/\["/ | s/,/","/g | s/\]/"\]/ | noh
-nnoremap <silent> [SUB]r :DQrblackets<CR>
-command DQrblackets s/(/("/ | s/,/","/g | s/)/")/ | noh
+nnoremap <silent> <Leader>q :bd #<CR>
+nnoremap <silent> <Leader>Q :BufDel<CR>
+""fzf.vim
+nnoremap <silent> [sub]l :Buffers<CR>
+nnoremap <silent> [sub]m :Marks<CR>
+nnoremap <silent> [sub]w :Windows<CR>
+nnoremap <silent> [sub]y :History<CR>
+nnoremap <silent> [sub]: :History:<CR>
+nnoremap <silent> [sub]. :BLines<CR>
+nnoremap <silent> [sub]/ :Lines<CR>
+nnoremap <silent> [sub]o :BTags<CR>
+nnoremap <silent> [sub]t :Tags<CR>
+nnoremap <silent> [sub]f :Files<CR>
+nnoremap <silent> [sub]g :Ag<CR>
+nnoremap <silent> [sub]? :Commands<CR>
 "nerdtree
 nnoremap <silent> <Leader>t :NERDTreeTabsToggle<CR>
-"Vimrc
-nnoremap <silent> [SUB]v :Vimrc<CR>
-nnoremap <silent> [SUB]V :Vimrcall<CR>
+"undotree
+nnoremap <silent> <Leader>u :MundoToggle<CR>
 "neosnippet
 nnoremap <silent> [SUB]E :NeoSnippetEdit<CR>
-"force write ReadOnly;manual operation is mandatory!!
-nnoremap [SUB]W :w !sudo tee % > /dev/null
-"fugitive conf
-nnoremap <Leader>s :Gstatus<CR>
-"vim-obsession
+"fugitive;Commits(fzf)
+nnoremap <silent> <Leader>s :Gstatus<CR>
+nnoremap <silent> <Leader>a :Gwrite<CR>
+nnoremap <silent> <Leader>c :Gcommit<CR>
+nnoremap <silent> <Leader>d :Gvdiff<CR>
+nnoremap <silent> <Leader>b :Gblame<CR>
+nnoremap <silent> <Leader>l :Commits<CR>
+"vim-obsession;{create/halt-recording},destroy
 nnoremap <Leader>o :Obsession<CR>
 nnoremap <Leader>O :Obsession!<CR>
+"Vimrc
+nnoremap <silent> [SUB], :Vimrc<CR>
+"force write ReadOnly;manual operation is mandatory!!
+nnoremap [SUB]W :w !sudo tee % > /dev/null
 
 ""user defined function/command
-"Bufgrep <- bufdo-grep <args> and add result to error list;use `:cw` for quickfix
-command -nargs=1 Bufgrep cexpr "" | bufdo vimgrepadd <args> %
 "Comp <- copare files side by side
 function! s:compare(...)
   if a:0 == 1
@@ -170,8 +175,7 @@ function! HandleURI()
 endfunction
 nnoremap <Leader>w :<C-u>call HandleURI()<CR>
 "Vimrc <- open ~/.vimrc with tab
-command! Vimrc tablast | tabedit ~/.vimrc
-command! Vimrcall tablast | tabedit ~/.vimrc | tabedit ~/.dein.toml | tabedit ~/.dein_lazy.toml
+command! Vimrc tablast | tabedit ~/.vimrc | tabedit ~/.dein.toml | tabedit ~/.dein_lazy.toml | tabp | tabp
 
 ""tab control
 function! s:SID_PREFIX()
@@ -225,23 +229,8 @@ augroup END
 "in-edit assist
 autocmd Filetype c,python,php,ruby,sh set list lcs=tab:\¦\ 
 
-"ctags;want to apply only when needed. b/c this will be done when edit ALWAYS!!
-"つーかタグジャンプ出来ないときに手動でやったらええやんけ。
-"やっぱめんどい。書くか。
+"ctags;search ".tags" file until $HOME
 set tags=.tags;~
-"augroup ctags
-"  autocmd!
-"  autocmd BufWritePost * silent !ctags -R -f .tags
-"augroup END
-"function! s:execute_ctags() abort
-"  let tag_name = '.tags'
-"  let tags_path = findfile(tag_name, '.;')
-"  if tags_path ==# ''
-"    return
-"  endif
-"  let tags_dirpath = fnamemodify(tags_path, ':p:h')
-"  execute 'silent !cd' tags_dirpath '&& ctags -R -f' tag_name '2> /dev/null &'
-"endfunction
 
 "----------------------------------------------------------------------------
 "plugin initialization

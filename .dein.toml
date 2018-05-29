@@ -10,12 +10,7 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
-repo = 'Shougo/denite.nvim'
-hook_post_source = '''
-  call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-  call denite#custom#var('grep', 'command', ['ag'])
-  call denite#custom#var('grep', 'default_opts', ['--follow', '--no-group', '--no-color'])
-'''
+repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
 repo = 'tpope/vim-surround'
@@ -27,10 +22,36 @@ repo = 'scrooloose/nerdtree'
 repo = 'jistr/vim-nerdtree-tabs'
 
 [[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-
-[[plugins]]
 repo = 'tpope/vim-fugitive'
 
 [[plugins]]
 repo = 'tpope/vim-obsession'
+
+[[plugins]]
+repo = 'junegunn/fzf'
+build = './install --all'
+merged = '0'
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+depends = 'fzf'
+hook_source = '''
+  let g:fzf_tags_command = 'ctags -R -f .tags'
+  command! -bang -nargs=* Ag call
+    \ fzf#vim#ag(<q-args>,{'options': '--delimiter : --nth 4..'},<bang>0)
+  command! -bang -nargs=* Files call
+    \ fzf#vim#files(<q-args>,
+    \            <bang>0 ? fzf#vim#with_preview('up:60%')
+    \                    : fzf#vim#with_preview('right:50%:hidden', '?'),
+    \            <bang>0)
+'''
+#TODO;Ag - need both "1.filename ignore" & "2.preview" as its feature.
+
+[[plugins]]
+repo = 'simnalamburt/vim-mundo'
+hook_source = '''
+  let g:mundo_preview_bottom = 1
+  let g:mundo_width = 35
+  let g:mundo_preview_statusline = '[Undotree-preview]'
+  let g:mundo_tree_statusline  = '[Undotree]'
+'''
