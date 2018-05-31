@@ -209,13 +209,15 @@ for n in range(1, 9)
   execute 'nnoremap <silent> [Tab]'.n  ':<C-u>tabnext'.n.'<CR>'
 endfor
 "create,edit,x[close],next(last),previous(first),only
-map <silent> [Tab]t :tablast <bar> tabnew<CR>
-map <silent> [Tab]w :tabclose<CR>
-map <silent> [Tab]n :tabnext<CR>
-map <silent> [Tab]N :tabl<CR>
-map <silent> [Tab]p :tabprevious<CR>
-map <silent> [Tab]P :tabfir<CR>
-map <silent> [Tab]o :tabonly<CR>
+nnoremap <silent> [Tab]t :tablast <bar> tabnew<CR>
+nnoremap <silent> [Tab]w :tabclose<CR>
+nnoremap <silent> [Tab]n :tabnext<CR>
+nnoremap <silent> [Tab]N :tabl<CR>
+nnoremap <silent> [Tab]p :tabprevious<CR>
+nnoremap <silent> [Tab]P :tabfir<CR>
+nnoremap <silent> [Tab]o :tabonly<CR>
+nnoremap <silent> [Tab]<C-]> <C-w><C-]><C-w>T
+nnoremap <silent> [Tab]f <C-w>gf
 
 ""FILETYPE
 "vim:open help with K,close with q
@@ -226,8 +228,6 @@ augroup GfPathGroup
   autocmd!
   autocmd FileType c setlocal path+=/usr/local/include,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/macosx.sdk/usr/include,/Users/naoki/scripts/src/util-linux/util-linux-2.31-rc1/include
 augroup END
-"in-edit assist
-autocmd Filetype c,python,php,ruby,sh set list lcs=tab:\¦\ 
 
 "ctags;search ".tags" file until $HOME
 set tags=.tags;~
