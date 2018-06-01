@@ -34,8 +34,7 @@ alias gbr='git branch -r'
 alias gss='(){ git stash push -u -m $1 }'
 alias gsd='git stash drop `git stash list|cut -d':' -f1|fzf`'
 alias gsl='git stash list'
-# NOTE:show require additional configuration to view diff.
-alias gsll='git stash show `git stash list|cut -d':' -f1|fzf`'
+alias gsll='git diff `git stash list|cut -d':' -f1|fzf`'
 alias gsp='git stash pop `git stash list|cut -d':' -f1|fzf`'
 alias gv='grv'
 # cd shortcut
