@@ -84,7 +84,7 @@ disable r
 ## fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # env
-export FZF_DEFAULT_OPTS='--height 40% --reverse --exit-0'
+export FZF_DEFAULT_OPTS='--height 40% --reverse'
 export FZF_TMUX=1
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_COMPLETION_TRIGGER=',,'
