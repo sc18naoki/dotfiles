@@ -208,8 +208,9 @@ nmap    t [Tab]
 for n in range(1, 9)
   execute 'nnoremap <silent> [Tab]'.n  ':<C-u>tabnext'.n.'<CR>'
 endfor
-"create,edit,x[close],next(last),previous(first),only
+"create,create-next,edit,x[close],next(last),previous(first),only,tag,gf
 nnoremap <silent> [Tab]t :tablast <bar> tabnew<CR>
+nnoremap <silent> [Tab]T :tabnew<CR>
 nnoremap <silent> [Tab]w :tabclose<CR>
 nnoremap <silent> [Tab]n :tabnext<CR>
 nnoremap <silent> [Tab]N :tabl<CR>
