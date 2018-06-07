@@ -65,3 +65,9 @@ hook_source = '''
   let g:indentLine_first_char = '¦'
   let g:indentLine_showFirstIndentLevel = 1
 '''
+
+[[plugins]]
+repo = 'thinca/vim-ref'
+hook_source = '''
+  let g:ref_phpmanual_path = '/home/naoki/usr/doc/dict/php-chunked-xhtml'
+'''

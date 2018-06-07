@@ -117,7 +117,8 @@ nnoremap <silent> <Leader>l :Commits<CR>
 nnoremap <Leader>o :Obsession<CR>
 nnoremap <Leader>O :Obsession!<CR>
 "Vimrc
-nnoremap <silent> [SUB], :Vimrc<CR>
+nnoremap <silent> [SUB]v :Vimrc<CR>
+nnoremap <silent> [SUB]V :Vimrcall<CR>
 "force write ReadOnly;manual operation is mandatory!!
 nnoremap [SUB]W :w !sudo tee % > /dev/null
 
@@ -175,7 +176,8 @@ function! HandleURI()
 endfunction
 nnoremap <Leader>w :<C-u>call HandleURI()<CR>
 "Vimrc <- open ~/.vimrc with tab
-command! Vimrc tablast | tabedit ~/.vimrc | tabedit ~/.dein.toml | tabedit ~/.dein_lazy.toml | tabp | tabp
+command! Vimrc tablast | tabedit ~/.vimrc
+command! Vimrcall tablast | tabedit ~/.vimrc | tabedit ~/.dein.toml | tabedit ~/.dein_lazy.toml | tabp | tabp
 
 ""tab control
 function! s:SID_PREFIX()
@@ -208,7 +210,7 @@ nmap    t [Tab]
 for n in range(1, 9)
   execute 'nnoremap <silent> [Tab]'.n  ':<C-u>tabnext'.n.'<CR>'
 endfor
-"create,create-next,edit,x[close],next(last),previous(first),only,tag,gf
+"create,create-next,edit,x[close],next(last),previous(first),only,tag(tab/vsp/sp),gf
 nnoremap <silent> [Tab]t :tablast <bar> tabnew<CR>
 nnoremap <silent> [Tab]T :tabnew<CR>
 nnoremap <silent> [Tab]w :tabclose<CR>
@@ -223,7 +225,7 @@ nnoremap <silent> [Tab]f <C-w>gf
 ""FILETYPE
 "vim:open help with K,close with q
 autocmd Filetype vim set keywordprg=:help
-autocmd FileType help nnoremap <buffer> q <C-w>c
+autocmd FileType help,ref* nnoremap <buffer> q <C-w>c
 "c:gf{path_to_header} <- add path when neccessary
 augroup GfPathGroup
   autocmd!

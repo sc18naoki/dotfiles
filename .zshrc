@@ -22,7 +22,7 @@ alias vimdiff='nvim -d'
 alias wl='wc -l'
 alias fzf='fzf-tmux'
 alias open='xdg-open'
-alias ptags='ctags -R -f .tags'
+alias rtags='ctags -R -f .tags'
 alias markdown='python -m markdown'
 # git shortcut
 alias gs='git status'
