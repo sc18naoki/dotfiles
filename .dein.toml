@@ -10,6 +10,10 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+[[plugins]]
 repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
@@ -69,5 +73,7 @@ hook_source = '''
 [[plugins]]
 repo = 'thinca/vim-ref'
 hook_source = '''
+  let g:ref_use_vimproc = 1
   let g:ref_phpmanual_path = '/home/naoki/usr/doc/dict/php-chunked-xhtml'
 '''
+#TODO:phpmanual "often" not available.
