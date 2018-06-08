@@ -86,5 +86,5 @@ disable r
 # env
 export FZF_DEFAULT_OPTS='--height 40% --reverse'
 export FZF_TMUX=1
-export FZF_DEFAULT_COMMAND='ag -a -g ""'
+export FZF_DEFAULT_COMMAND='ag -a'
 export FZF_COMPLETION_TRIGGER=',,'

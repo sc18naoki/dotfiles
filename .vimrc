@@ -85,7 +85,7 @@ nnoremap <silent> [sub]d :DiffOrig<CR>
 set hidden
 nnoremap <silent> [sub]n :bn<CR>
 nnoremap <silent> [sub]p :bp<CR>
-nnoremap <silent> <Leader>q :bd #<CR>
+nnoremap <silent> <Leader>q :bd %<CR>
 nnoremap <silent> <Leader>Q :BufDel<CR>
 ""fzf.vim
 nnoremap <silent> [sub]l :Buffers<CR>
