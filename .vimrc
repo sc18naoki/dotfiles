@@ -14,7 +14,7 @@ set laststatus=2
 set backup
 set backupdir=~/.local/share/nvim/backup 
 set undofile
-set undodir=~/.local/share/nvim/backup
+set undodir=~/.local/share/nvim/undo
 "indent
 set expandtab
 set tabstop=4
@@ -101,9 +101,11 @@ nnoremap <silent> [sub]f :Files<CR>
 nnoremap <silent> [sub]g :Ag<CR>
 nnoremap <silent> [sub]? :Commands<CR>
 "nerdtree
-nnoremap <silent> <Leader>t :NERDTreeTabsToggle<CR>
+nnoremap <silent> <Leader>n :NERDTreeTabsToggle<CR>
 "undotree
 nnoremap <silent> <Leader>u :MundoToggle<CR>
+"tagbar
+nnoremap <silent> <Leader>t :TagbarToggle<CR>
 "neosnippet
 nnoremap <silent> [SUB]E :NeoSnippetEdit<CR>
 "fugitive;Commits(fzf)
@@ -210,9 +212,8 @@ nmap    t [Tab]
 for n in range(1, 9)
   execute 'nnoremap <silent> [Tab]'.n  ':<C-u>tabnext'.n.'<CR>'
 endfor
-"create,create-next,edit,x[close],next(last),previous(first),only,tag(tab/vsp/sp),gf
+"create,edit,close,next(last),previous(first),only,tag,path
 nnoremap <silent> [Tab]t :tablast <bar> tabnew<CR>
-nnoremap <silent> [Tab]T :tabnew<CR>
 nnoremap <silent> [Tab]w :tabclose<CR>
 nnoremap <silent> [Tab]n :tabnext<CR>
 nnoremap <silent> [Tab]N :tabl<CR>

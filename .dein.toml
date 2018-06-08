@@ -49,7 +49,6 @@ hook_source = '''
     \                    : fzf#vim#with_preview('right:50%:hidden', '?'),
     \            <bang>0)
 '''
-#TODO;Ag - need both "1.filename ignore" & "2.preview" as its feature.
 
 [[plugins]]
 repo = 'simnalamburt/vim-mundo'
@@ -70,10 +69,15 @@ hook_source = '''
   let g:indentLine_showFirstIndentLevel = 1
 '''
 
+#[[plugins]]
+#repo = 'thinca/vim-ref'
+#hook_source = '''
+#  let g:ref_use_vimproc = 1
+#  let g:ref_phpmanual_path = '/home/naoki/usr/doc/dict/php-chunked-xhtml'
+#'''
+
 [[plugins]]
-repo = 'thinca/vim-ref'
+repo = 'majutsushi/tagbar'
 hook_source = '''
-  let g:ref_use_vimproc = 1
-  let g:ref_phpmanual_path = '/home/naoki/usr/doc/dict/php-chunked-xhtml'
+  let g:tagbar_autofocus = 1
 '''
-#TODO:phpmanual "often" not available.

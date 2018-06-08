@@ -86,12 +86,5 @@ disable r
 # env
 export FZF_DEFAULT_OPTS='--height 40% --reverse'
 export FZF_TMUX=1
-export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_DEFAULT_COMMAND='ag -a -g ""'
 export FZF_COMPLETION_TRIGGER=',,'
-## FZF:override history incremental search, execute when selected.
-#fzf-history-widget-accept() {
-#  fzf-history-widget
-#  zle accept-line
-#}
-#zle     -N     fzf-history-widget-accept
-#bindkey '^R' fzf-history-widget-accept
