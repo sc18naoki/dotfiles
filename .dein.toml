@@ -87,7 +87,6 @@ hook_source = '''
   let g:indentLine_fileType = ['c','sh','php','smarty','python','ruby']
   let g:indentLine_char = '¦'
   let g:indentLine_first_char = '¦'
-  let g:indentLine_showFirstIndentLevel = 1
 '''
 
 [[plugins]]
