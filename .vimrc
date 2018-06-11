@@ -8,8 +8,11 @@
 set number
 set display=lastline
 set pumheight=10
-set statusline=%y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}\ %r%h%w%F%m%=ROW=%l/%L,COL=%c\ %{ObsessionStatus()}%{fugitive#statusline()}
+set statusline=%y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}\ %r%h%w%F%m%=ROW=%l/%L,COL=%c\ %{ObsessionStatus()}[Lint:%{LinterStatus()}]%{fugitive#statusline()}
 set laststatus=2
+"cursorline
+set cursorline
+highlight CursorLine term=bold cterm=bold ctermbg=234
 "backup
 set backup
 set backupdir=~/.local/share/nvim/backup 
@@ -54,6 +57,12 @@ nnoremap <silent>+ 3<C-w>+
 nnoremap <silent>_ 3<C-w>-
 nnoremap <silent>= 3<C-w>>
 nnoremap <silent>- 3<C-w><
+""[e]:easy-motion.vim
+nnoremap e <Nop>
+nmap e [easy]
+nmap [easy] <Plug>(easymotion-prefix)
+nmap [easy]j <Plug>(easymotion-j)
+nmap [easy]k <Plug>(easymotion-k)
 "remenber last cursor position
 augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -70,12 +79,14 @@ highlight DiffDelete cterm=bold ctermfg=10 ctermbg=52
 highlight DiffChange cterm=bold ctermfg=10 ctermbg=17
 highlight DiffText   cterm=bold ctermfg=10 ctermbg=21
 highlight NonText cterm=bold ctermfg=248 guifg=248
+""system
+"updatetime: decrease delay from 4000 to 100
+set updatetime=100
 
-""sub prefix
+"extra keybindings
+""[sub]:sub
 nnoremap [sub] <Nop>
 nmap s [sub]
-nnoremap [SUB] <Nop>
-nmap S [SUB]
 "substituiton
 nnoremap [sub]* *:%s/<C-r>///gI<Left><Left><Left>
 nnoremap [sub]s :%s///gI<Left><Left><Left><Left>
@@ -85,9 +96,9 @@ nnoremap <silent> [sub]d :DiffOrig<CR>
 set hidden
 nnoremap <silent> [sub]n :bn<CR>
 nnoremap <silent> [sub]p :bp<CR>
-nnoremap <silent> <Leader>q :bd %<CR>
+nnoremap <silent> <Leader>q :BD<CR>
 nnoremap <silent> <Leader>Q :BufDel<CR>
-""fzf.vim
+"fzf.vim
 nnoremap <silent> [sub]l :Buffers<CR>
 nnoremap <silent> [sub]m :Marks<CR>
 nnoremap <silent> [sub]w :Windows<CR>
@@ -100,29 +111,40 @@ nnoremap <silent> [sub]t :Tags<CR>
 nnoremap <silent> [sub]f :Files<CR>
 nnoremap <silent> [sub]g :Ag<CR>
 nnoremap <silent> [sub]? :Commands<CR>
+""[SUB]:SUB
+nnoremap [SUB] <Nop>
+nmap S [SUB]
+"neosnippet
+nnoremap <silent> [SUB]E :NeoSnippetEdit<CR>
+"Vimrc
+nnoremap <silent> [SUB]v :Vimrc<CR>
+nnoremap <silent> [SUB]V :Vimrcall<CR>
+"force write ReadOnly;manual operation is mandatory!!
+nnoremap [SUB]W :w !sudo tee % > /dev/null
+""<Leader>:Leader
 "nerdtree
 nnoremap <silent> <Leader>n :NERDTreeTabsToggle<CR>
 "undotree
 nnoremap <silent> <Leader>u :MundoToggle<CR>
 "tagbar
 nnoremap <silent> <Leader>t :TagbarToggle<CR>
-"neosnippet
-nnoremap <silent> [SUB]E :NeoSnippetEdit<CR>
-"fugitive;Commits(fzf)
+"git:fugitive;fzf;GitGutter
 nnoremap <silent> <Leader>s :Gstatus<CR>
 nnoremap <silent> <Leader>a :Gwrite<CR>
 nnoremap <silent> <Leader>c :Gcommit<CR>
-nnoremap <silent> <Leader>d :Gvdiff<CR>
+nnoremap <silent> <Leader>d :Gdiff<CR>
+nnoremap <silent> <Leader>v :GitGutterPreviewHunk<CR>
 nnoremap <silent> <Leader>b :Gblame<CR>
 nnoremap <silent> <Leader>l :Commits<CR>
 "vim-obsession;{create/halt-recording},destroy
-nnoremap <Leader>o :Obsession<CR>
-nnoremap <Leader>O :Obsession!<CR>
-"Vimrc
-nnoremap <silent> [SUB]v :Vimrc<CR>
-nnoremap <silent> [SUB]V :Vimrcall<CR>
-"force write ReadOnly;manual operation is mandatory!!
-nnoremap [SUB]W :w !sudo tee % > /dev/null
+nnoremap <silent> <Leader>o :Obsession<CR>
+nnoremap <silent> <Leader>O :Obsession!<CR>
+"ALE: Toggle on/off
+nnoremap <silent> <Leader>A :ALEToggle<CR>
+"IngentLine: Toggle on/off
+nnoremap <silent> <Leader>I :IndentLinesToggle<CR>
+"GitGutter: Toggle on/off
+nnoremap <silent> <Leader>G :GitGutterToggle<CR>
 
 ""user defined function/command
 "Comp <- copare files side by side
@@ -223,10 +245,11 @@ nnoremap <silent> [Tab]o :tabonly<CR>
 nnoremap <silent> [Tab]<C-]> <C-w><C-]><C-w>T
 nnoremap <silent> [Tab]f <C-w>gf
 
-""FILETYPE
-"vim:open help with K,close with q
+""autocmd
+"open help with K
 autocmd Filetype vim set keywordprg=:help
-autocmd FileType help,ref* nnoremap <buffer> q <C-w>c
+"close with q
+autocmd FileType help,diff nnoremap <buffer> q <C-w>c
 "c:gf{path_to_header} <- add path when neccessary
 augroup GfPathGroup
   autocmd!

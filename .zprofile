@@ -82,8 +82,6 @@ RPROMPT="%1(v|%F{green}%1v%f|)"
 # R
 disable r
 ## fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# env
 export FZF_DEFAULT_OPTS='--height 40% --reverse'
 export FZF_TMUX=1
 export FZF_DEFAULT_COMMAND='ag -a'

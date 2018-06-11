@@ -10,6 +10,15 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
+repo = 'easymotion/vim-easymotion'
+hook_add = '''
+  let g:EasyMotion_smartcase = 1
+'''
+
+[[plugins]]
+repo = 'qpkorr/vim-bufkill'
+
+[[plugins]]
 repo = 'Shougo/vimproc.vim'
 build = 'make'
 
@@ -27,6 +36,18 @@ repo = 'jistr/vim-nerdtree-tabs'
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+hook_add = '''
+  let g:gitgutter_override_sign_column_highlight = 0
+  highlight clear SignColumn
+  highlight SignColumn ctermbg=gray
+  highlight GitGutterAdd ctermfg=green ctermbg=235
+  highlight GitGutterChange ctermfg=cyan ctermbg=235
+  highlight GitGutterDelete ctermfg=red ctermbg=235
+  highlight GitGutterChangeDelete ctermfg=cyan ctermbg=235
+'''
 
 [[plugins]]
 repo = 'tpope/vim-obsession'
@@ -69,15 +90,29 @@ hook_source = '''
   let g:indentLine_showFirstIndentLevel = 1
 '''
 
-#[[plugins]]
-#repo = 'thinca/vim-ref'
-#hook_source = '''
-#  let g:ref_use_vimproc = 1
-#  let g:ref_phpmanual_path = '/home/naoki/usr/doc/dict/php-chunked-xhtml'
-#'''
-
 [[plugins]]
 repo = 'majutsushi/tagbar'
 hook_source = '''
   let g:tagbar_autofocus = 1
+'''
+
+[[plugins]]
+repo = 'w0rp/ale'
+hook_add = '''
+  nmap <silent> <C-p> <Plug>(ale_previous_wrap)
+  nmap <silent> <C-n> <Plug>(ale_next_wrap)
+  highlight ALEWarning ctermbg=Darkgray ctermfg=yellow
+  highlight ALEError ctermbg=Darkgray ctermfg=red
+  let g:ale_lint_on_text_changed = 'normal'
+  let g:ale_lint_on_insert_leave = 1
+  function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+    return l:counts.total == 0 ? '' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
+  endfunction
 '''

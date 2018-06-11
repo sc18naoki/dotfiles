@@ -80,8 +80,11 @@ cd () {
   esac
 }
 
-## plugin
+## plugin(if there were)
 
 # tmux; this line is prerequisite, not working with .zprofile
 [[ -z "$TMUX" && ! -z "$PS1" ]] && tmux
 set -o ignoreeof # stop tmux from exiting with C-d 
+
+# fzf;
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
