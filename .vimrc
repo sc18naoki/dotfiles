@@ -52,17 +52,17 @@ cnoremap <C-f> <Right>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 cnoremap <C-k> <C-E><C-U>
-"window resize;horizontally{increase/decrease},vertically{increase/decrease}
-nnoremap <silent>+ 3<C-w>+
-nnoremap <silent>_ 3<C-w>-
-nnoremap <silent>= 3<C-w>>
-nnoremap <silent>- 3<C-w><
-""[e]:easy-motion.vim
+"easy-motion
 nnoremap e <Nop>
 nmap e [easy]
 nmap [easy] <Plug>(easymotion-prefix)
 nmap [easy]j <Plug>(easymotion-j)
 nmap [easy]k <Plug>(easymotion-k)
+"window resize;horizontally{increase/decrease},vertically{increase/decrease}
+nnoremap <silent>+ 3<C-w>+
+nnoremap <silent>_ 3<C-w>-
+nnoremap <silent>= 3<C-w>>
+nnoremap <silent>- 3<C-w><
 "remenber last cursor position
 augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -83,8 +83,8 @@ highlight NonText cterm=bold ctermfg=248 guifg=248
 "updatetime: decrease delay from 4000 to 100
 set updatetime=100
 
-"extra keybindings
-""[sub]:sub
+"keybindings
+""[sub]
 nnoremap [sub] <Nop>
 nmap s [sub]
 "substituiton
@@ -111,7 +111,7 @@ nnoremap <silent> [sub]t :Tags<CR>
 nnoremap <silent> [sub]f :Files<CR>
 nnoremap <silent> [sub]g :Ag<CR>
 nnoremap <silent> [sub]? :Commands<CR>
-""[SUB]:SUB
+""[SUB]
 nnoremap [SUB] <Nop>
 nmap S [SUB]
 "neosnippet
@@ -121,21 +121,24 @@ nnoremap <silent> [SUB]v :Vimrc<CR>
 nnoremap <silent> [SUB]V :Vimrcall<CR>
 "force write ReadOnly;manual operation is mandatory!!
 nnoremap [SUB]W :w !sudo tee % > /dev/null
-""<Leader>:Leader
+""[Space]
+nnoremap <Space> <Nop>
+nmap <Space> [Space]
 "nerdtree
-nnoremap <silent> <Leader>n :NERDTreeTabsToggle<CR>
+nnoremap <silent> [Space]n :NERDTreeTabsToggle<CR>
 "undotree
-nnoremap <silent> <Leader>u :MundoToggle<CR>
+nnoremap <silent> [Space]u :MundoToggle<CR>
 "tagbar
-nnoremap <silent> <Leader>t :TagbarToggle<CR>
+nnoremap <silent> [Space]t :TagbarToggle<CR>
 "git:fugitive;fzf;GitGutter
-nnoremap <silent> <Leader>s :Gstatus<CR>
-nnoremap <silent> <Leader>a :Gwrite<CR>
-nnoremap <silent> <Leader>c :Gcommit<CR>
-nnoremap <silent> <Leader>d :Gdiff<CR>
-nnoremap <silent> <Leader>v :GitGutterPreviewHunk<CR>
-nnoremap <silent> <Leader>b :Gblame<CR>
-nnoremap <silent> <Leader>l :Commits<CR>
+nnoremap <silent> [Space]s :Gstatus<CR>
+nnoremap <silent> [Space]a :Gwrite<CR>
+nnoremap <silent> [Space]c :Gcommit<CR>
+nnoremap <silent> [Space]d :Gdiff<CR>
+nnoremap <silent> [Space]v :GitGutterPreviewHunk<CR>
+nnoremap <silent> [Space]b :Gblame<CR>
+nnoremap <silent> [Space]l :Commits<CR>
+""<Leader>
 "vim-obsession;{create/halt-recording},destroy
 nnoremap <silent> <Leader>o :Obsession<CR>
 nnoremap <silent> <Leader>O :Obsession!<CR>
