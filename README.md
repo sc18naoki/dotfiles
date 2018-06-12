@@ -1,6 +1,6 @@
 # dotfiles
 
-restore configurations & show list of tools
+configurations & list of tools
 
 ### &lt;overview&gt;
 

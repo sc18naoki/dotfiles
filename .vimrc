@@ -83,16 +83,20 @@ highlight NonText cterm=bold ctermfg=248 guifg=248
 "updatetime: decrease delay from 4000 to 100
 set updatetime=100
 
-"keybindings
-""[sub]
+""keybindings
+"prefix
 nnoremap [sub] <Nop>
 nmap s [sub]
+nnoremap [SUB] <Nop>
+nmap S [SUB]
+nnoremap <Space> <Nop>
+nmap <Space> [Space]
 "substituiton
 nnoremap [sub]* *:%s/<C-r>///gI<Left><Left><Left>
 nnoremap [sub]s :%s///gI<Left><Left><Left><Left>
-"Diff last_save/last_backup
+"Diff
 nnoremap <silent> [sub]d :DiffOrig<CR>
-"buffer (list,reload,next,previous)
+"buffer
 set hidden
 nnoremap <silent> [sub]n :bn<CR>
 nnoremap <silent> [sub]p :bp<CR>
@@ -111,19 +115,13 @@ nnoremap <silent> [sub]t :Tags<CR>
 nnoremap <silent> [sub]f :Files<CR>
 nnoremap <silent> [sub]g :Ag<CR>
 nnoremap <silent> [sub]? :Commands<CR>
-""[SUB]
-nnoremap [SUB] <Nop>
-nmap S [SUB]
 "neosnippet
 nnoremap <silent> [SUB]E :NeoSnippetEdit<CR>
 "Vimrc
-nnoremap <silent> [SUB]v :Vimrc<CR>
-nnoremap <silent> [SUB]V :Vimrcall<CR>
+nnoremap <silent> [Space], :Vimrc<CR>
+nnoremap <silent> [Space]. :Vimrcall<CR>
 "force write ReadOnly;manual operation is mandatory!!
 nnoremap [SUB]W :w !sudo tee % > /dev/null
-""[Space]
-nnoremap <Space> <Nop>
-nmap <Space> [Space]
 "nerdtree
 nnoremap <silent> [Space]n :NERDTreeTabsToggle<CR>
 "undotree
@@ -138,7 +136,6 @@ nnoremap <silent> [Space]d :Gdiff<CR>
 nnoremap <silent> [Space]v :GitGutterPreviewHunk<CR>
 nnoremap <silent> [Space]b :Gblame<CR>
 nnoremap <silent> [Space]l :Commits<CR>
-""<Leader>
 "vim-obsession;{create/halt-recording},destroy
 nnoremap <silent> <Leader>o :Obsession<CR>
 nnoremap <silent> <Leader>O :Obsession!<CR>
