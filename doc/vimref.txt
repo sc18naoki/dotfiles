@@ -1,1 +1,4 @@
 how can I use this?
+
+なんかphpに関して言えば、"g:ref_phpmanual_path"を設定したら行けた。
+よくわかんね。
