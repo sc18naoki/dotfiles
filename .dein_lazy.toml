@@ -72,3 +72,11 @@ on_ft = 'python'
 [[plugins]]
 repo = 'padawan-php/deoplete-padawan'
 on_ft = 'php'
+
+[[plugins]]
+repo = 'zchee/deoplete-clang'
+on_ft = 'c'
+hook_add = '''
+  let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-6.0/lib/libclang-6.0.so.1'
+  let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
+'''

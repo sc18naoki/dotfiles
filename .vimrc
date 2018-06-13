@@ -251,7 +251,7 @@ autocmd Filetype vim set keywordprg=:help
 "close with q
 autocmd FileType help,diff,Preview,ref* nnoremap <buffer> q <C-w>c
 "hide preview window
-autocmd FileType php,python setlocal completeopt-=preview
+autocmd FileType c,php,python setlocal completeopt-=preview
 "c:gf{path_to_header} <- add path when neccessary
 augroup GfPathGroup
   autocmd!
