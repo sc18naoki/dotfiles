@@ -29,6 +29,9 @@ repo = 'Shougo/neosnippet-snippets'
 repo = 'tpope/vim-surround'
 
 [[plugins]]
+repo = 'tpope/vim-repeat'
+
+[[plugins]]
 repo = 'scrooloose/nerdtree'
 
 [[plugins]]
@@ -104,6 +107,7 @@ hook_add = '''
   highlight ALEError ctermbg=Darkgray ctermfg=red
   let g:ale_lint_on_text_changed = 'normal'
   let g:ale_lint_on_insert_leave = 1
+  let g:ale_echo_msg_format = '[%linter%]%s [%severity%]'
   function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
     let l:all_errors = l:counts.error + l:counts.style_error

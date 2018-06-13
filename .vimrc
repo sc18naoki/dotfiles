@@ -89,8 +89,6 @@ nnoremap [sub] <Nop>
 nmap s [sub]
 nnoremap [SUB] <Nop>
 nmap S [SUB]
-nnoremap <Space> <Nop>
-nmap <Space> [Space]
 "substituiton
 nnoremap [sub]* *:%s/<C-r>///gI<Left><Left><Left>
 nnoremap [sub]s :%s///gI<Left><Left><Left><Left>
@@ -100,6 +98,8 @@ nnoremap <silent> [sub]d :DiffOrig<CR>
 set hidden
 nnoremap <silent> [sub]n :bn<CR>
 nnoremap <silent> [sub]p :bp<CR>
+nnoremap <silent> [SUB]N :BF<CR>
+nnoremap <silent> [SUB]P :BB<CR>
 nnoremap <silent> <Leader>q :BD<CR>
 nnoremap <silent> <Leader>Q :BufDel<CR>
 "fzf.vim
@@ -118,24 +118,24 @@ nnoremap <silent> [sub]? :Commands<CR>
 "neosnippet
 nnoremap <silent> [SUB]E :NeoSnippetEdit<CR>
 "Vimrc
-nnoremap <silent> [Space], :Vimrc<CR>
-nnoremap <silent> [Space]. :Vimrcall<CR>
+nnoremap <silent> <Space>, :Vimrc<CR>
+nnoremap <silent> <Space>. :Vimrcall<CR>
 "force write ReadOnly;manual operation is mandatory!!
 nnoremap [SUB]W :w !sudo tee % > /dev/null
 "nerdtree
-nnoremap <silent> [Space]n :NERDTreeTabsToggle<CR>
+nnoremap <silent> <Space>n :NERDTreeTabsToggle<CR>
 "undotree
-nnoremap <silent> [Space]u :MundoToggle<CR>
+nnoremap <silent> <Space>u :MundoToggle<CR>
 "tagbar
-nnoremap <silent> [Space]t :TagbarToggle<CR>
+nnoremap <silent> <Space>t :TagbarToggle<CR>
 "git:fugitive;fzf;GitGutter
-nnoremap <silent> [Space]s :Gstatus<CR>
-nnoremap <silent> [Space]a :Gwrite<CR>
-nnoremap <silent> [Space]c :Gcommit<CR>
-nnoremap <silent> [Space]d :Gdiff<CR>
-nnoremap <silent> [Space]v :GitGutterPreviewHunk<CR>
-nnoremap <silent> [Space]b :Gblame<CR>
-nnoremap <silent> [Space]l :Commits<CR>
+nnoremap <silent> <Space>gs :Gstatus<CR>
+nnoremap <silent> <Space>ga :Gwrite<CR>
+nnoremap <silent> <Space>gc :Gcommit<CR>
+nnoremap <silent> <Space>gd :Gdiff<CR>
+nnoremap <silent> <Space>gv :GitGutterPreviewHunk<CR>
+nnoremap <silent> <Space>gb :Gblame<CR>
+nnoremap <silent> <Space>gl :Commits<CR>
 "vim-obsession;{create/halt-recording},destroy
 nnoremap <silent> <Leader>o :Obsession<CR>
 nnoremap <silent> <Leader>O :Obsession!<CR>
