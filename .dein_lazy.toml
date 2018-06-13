@@ -58,8 +58,17 @@ hook_source = '''
   if has('conceal')
     set conceallevel=2 concealcursor=niv
   endif
-  let g:neosnippet#snippets_directory='~/usr/doc/snippets/'
+  let g:neosnippet#snippets_directory = '~/usr/doc/snippets/'
 '''
 on_event = 'InsertCharPre'
 on_ft = ['snippet']
 depends = ['neosnippet-snippets']
+
+### deoplete sources
+[[plugins]]
+repo = 'zchee/deoplete-jedi'
+on_ft = 'python'
+
+[[plugins]]
+repo = 'padawan-php/deoplete-padawan'
+on_ft = 'php'

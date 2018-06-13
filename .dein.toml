@@ -119,3 +119,6 @@ hook_add = '''
     \)
   endfunction
 '''
+
+[[plugins]]
+repo = 'thinca/vim-ref'

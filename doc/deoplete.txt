@@ -1,0 +1,11 @@
+# quickref for update info
+
+---
+
+### deoplete available sources
+
+https://github.com/Shougo/deoplete.nvim/wiki/Completion-Sources
+
+#### reference for each language
+
+- php: https://github.com/padawan-php/padawan.php

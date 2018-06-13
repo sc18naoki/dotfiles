@@ -45,13 +45,14 @@ eval "$(pyenv virtualenv-init -)"
 PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 ## -> php
-export PATH="/home/naoki/.phpenv/bin:$PATH"
+PATH="/home/naoki/.phpenv/bin:$PATH"
 eval "$(phpenv init -)"
 # avoid duplication
 typeset -U path PATH
 ## for these environment variables, written under "/etc/profile"
 #export LANG=en_US.UTF-8
 #export LC_TIME=en_US.UTF-8
+export PATH
 
 # CLI tools
 # git
