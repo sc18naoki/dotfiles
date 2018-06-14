@@ -32,10 +32,12 @@ export EDITOR=nvim
 bindkey -e
 export MANPAGER="nvim -c 'set ft=man' -"
 export XDG_CONFIG_HOME=~/.config
-export VBACKUPDIR='~/.local/share/nvim/backup'
 # PATH
 PATH="/home/naoki/usr/local/anaconda3/bin:/home/naoki/usr/bin:/home/naoki/.config/composer/vendor/bin:$PATH"
 # LANGUAGE
+# -> go
+GOPATH="$HOME/usr/local/go"
+PATH="${GOPATH}/bin:$PATH"
 # -> python
 export PYENV_ROOT="${HOME}/.pyenv"
 PATH="${PYENV_ROOT}/bin:$PATH"

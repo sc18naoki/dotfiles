@@ -58,6 +58,8 @@ nmap e [easy]
 nmap [easy] <Plug>(easymotion-prefix)
 nmap [easy]j <Plug>(easymotion-j)
 nmap [easy]k <Plug>(easymotion-k)
+nnoremap [easy]h ^
+nnoremap [easy]l $
 "window resize;horizontally{increase/decrease},vertically{increase/decrease}
 nnoremap <silent>+ 3<C-w>+
 nnoremap <silent>_ 3<C-w>-
@@ -129,13 +131,15 @@ nnoremap <silent> <Space>u :MundoToggle<CR>
 "tagbar
 nnoremap <silent> <Space>t :TagbarToggle<CR>
 "git:fugitive;fzf;GitGutter
-nnoremap <silent> <Space>gs :Gstatus<CR>
-nnoremap <silent> <Space>ga :Gwrite<CR>
-nnoremap <silent> <Space>gc :Gcommit<CR>
-nnoremap <silent> <Space>gd :Gdiff<CR>
-nnoremap <silent> <Space>gv :GitGutterPreviewHunk<CR>
-nnoremap <silent> <Space>gb :Gblame<CR>
-nnoremap <silent> <Space>gl :Commits<CR>
+nnoremap [git] <Nop>
+nmap <Space>g [git]
+nnoremap <silent> [git]s :Gstatus<CR>
+nnoremap <silent> [git]a :Gwrite<CR>
+nnoremap <silent> [git]c :Gcommit<CR>
+nnoremap <silent> [git]d :Gdiff<CR>
+nnoremap <silent> [git]v :GitGutterPreviewHunk<CR>
+nnoremap <silent> [git]b :Gblame<CR>
+nnoremap <silent> [git]l :Commits<CR>
 "vim-obsession;{create/halt-recording},destroy
 nnoremap <silent> <Leader>o :Obsession<CR>
 nnoremap <silent> <Leader>O :Obsession!<CR>

@@ -123,5 +123,6 @@ hook_add = '''
 [[plugins]]
 repo = 'thinca/vim-ref'
 hook_add = '''
+  let g:ref_use_vimproc = 1
   let g:ref_phpmanual_path = '/home/naoki/usr/doc/dict/php-chunked-xhtml'
 '''
