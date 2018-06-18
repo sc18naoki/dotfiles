@@ -10,6 +10,8 @@ set display=lastline
 set pumheight=10
 set statusline=%y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}\ %r%h%w%F%m%=ROW=%l/%L,COL=%c\ %{ObsessionStatus()}[Lint:%{LinterStatus()}]
 set laststatus=2
+highlight MyHighlightGroup ctermfg=black ctermbg=yellow
+match MyHighlightGroup /TODO\|NOTE\|MEMO/
 "cursorline
 set cursorline
 highlight CursorLine term=bold cterm=bold ctermbg=234
@@ -250,16 +252,18 @@ nnoremap <silent> [Tab]<C-]> <C-w><C-]><C-w>T
 nnoremap <silent> [Tab]f <C-w>gf
 
 ""autocmd
-"open help with K
 autocmd Filetype vim set keywordprg=:help
-"close with q
-autocmd FileType help,diff,Preview,ref* nnoremap <buffer> q <C-w>c
-"hide preview window
-autocmd FileType c,php,python setlocal completeopt-=preview
-"c:gf{path_to_header} <- add path when neccessary
-augroup GfPathGroup
+augroup QuickQuitGroup
   autocmd!
-  autocmd FileType c setlocal path+=/usr/local/include,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/macosx.sdk/usr/include,/Users/naoki/scripts/src/util-linux/util-linux-2.31-rc1/include
+  autocmd FileType help,diff,Preview,ref* nnoremap <buffer> q <C-w>c
+augroup END
+augroup DeopleteConfigs
+  autocmd!
+  autocmd FileType c,php,python,ruby setlocal completeopt-=preview
+augroup END
+augroup IndentConfigs
+  autocmd!
+  autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 iskeyword+=?
 augroup END
 
 "ctags;search ".tags" file until $HOME
