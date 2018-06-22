@@ -24,7 +24,7 @@ hook_add = '''
 
 [[plugins]]
 repo = 'cohama/lexima.vim'
-on_ft = [ 'python', 'sh', 'c', 'php', 'ruby' ]
+on_ft = [ 'python', 'sh', 'c', 'php', 'ruby', 'html', 'smarty' ]
 
 ## Good one. But Not now.
 #[[plugins]]
@@ -81,6 +81,7 @@ hook_add = '''
   let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
 '''
 
+# bit foolish, need better one
 [[plugins]]
 repo = 'fishbullet/deoplete-ruby'
 on_ft = 'ruby'

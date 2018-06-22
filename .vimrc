@@ -88,7 +88,7 @@ highlight NonText cterm=bold ctermfg=248 guifg=248
 set updatetime=100
 
 ""keybindings
-"prefix
+"prefix;SUB deprecated for temporary
 nnoremap [sub] <Nop>
 nmap s [sub]
 nnoremap [SUB] <Nop>
@@ -102,8 +102,8 @@ nnoremap <silent> [sub]d :DiffOrig<CR>
 set hidden
 nnoremap <silent> [sub]n :bn<CR>
 nnoremap <silent> [sub]p :bp<CR>
-nnoremap <silent> [SUB]N :BF<CR>
-nnoremap <silent> [SUB]P :BB<CR>
+"nnoremap <silent> [SUB]N :BF<CR>
+"nnoremap <silent> [SUB]P :BB<CR>
 nnoremap <silent> <Leader>q :BD<CR>
 nnoremap <silent> <Leader>Q :BufDel<CR>
 "fzf.vim
@@ -120,12 +120,12 @@ nnoremap <silent> [sub]f :Files<CR>
 nnoremap <silent> [sub]g :Ag<CR>
 nnoremap <silent> [sub]? :Commands<CR>
 "neosnippet
-nnoremap <silent> [SUB]E :NeoSnippetEdit<CR>
+nnoremap <silent> [sub]e :NeoSnippetEdit<CR>
 "Vimrc
 nnoremap <silent> <Space>, :Vimrc<CR>
 nnoremap <silent> <Space>. :Vimrcall<CR>
 "force write ReadOnly;manual operation is mandatory!!
-nnoremap [SUB]W :w !sudo tee % > /dev/null
+nnoremap <Leader>W :w !sudo tee % > /dev/null
 "nerdtree
 nnoremap <silent> <Space>n :NERDTreeTabsToggle<CR>
 "undotree
@@ -139,7 +139,9 @@ nnoremap <silent> [git]s :Gstatus<CR>
 nnoremap <silent> [git]a :Gwrite<CR>
 nnoremap <silent> [git]c :Gcommit<CR>
 nnoremap <silent> [git]d :Gdiff<CR>
-nnoremap <silent> [git]v :GitGutterPreviewHunk<CR>
+nnoremap <silent> [git]v :GitGutterPreviewHunk<CR>9<C-w>j
+nnoremap <silent> [git]p :GitGutterPrevHunk<CR>
+nnoremap <silent> [git]n :GitGutterNextHunk<CR>
 nnoremap <silent> [git]b :Gblame<CR>
 nnoremap <silent> [git]l :Commits<CR>
 "vim-obsession;{create/halt-recording},destroy
