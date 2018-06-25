@@ -61,6 +61,7 @@ nmap [easy] <Plug>(easymotion-prefix)
 nmap [easy]j <Plug>(easymotion-j)
 nmap [easy]k <Plug>(easymotion-k)
 nnoremap [easy]h ^
+nnoremap [easy]H 0
 nnoremap [easy]l $
 "window resize;horizontally{increase/decrease},vertically{increase/decrease}
 nnoremap <silent>+ 3<C-w>+
@@ -119,6 +120,7 @@ nnoremap <silent> [sub]t :Tags<CR>
 nnoremap <silent> [sub]f :Files<CR>
 nnoremap <silent> [sub]g :Ag<CR>
 nnoremap <silent> [sub]? :Commands<CR>
+nnoremap <silent> [sub]h :Helptags<CR>
 "neosnippet
 nnoremap <silent> [sub]e :NeoSnippetEdit<CR>
 "Vimrc
@@ -138,8 +140,8 @@ nmap <Space>g [git]
 nnoremap <silent> [git]s :Gstatus<CR>
 nnoremap <silent> [git]a :Gwrite<CR>
 nnoremap <silent> [git]c :Gcommit<CR>
-nnoremap <silent> [git]d :Gdiff<CR>
-nnoremap <silent> [git]v :GitGutterPreviewHunk<CR>9<C-w>j
+nnoremap <silent> [git]d :Gvdiff<CR>
+nnoremap <silent> [git]v :GitGutterPreviewHunk<CR><C-w>b
 nnoremap <silent> [git]p :GitGutterPrevHunk<CR>
 nnoremap <silent> [git]n :GitGutterNextHunk<CR>
 nnoremap <silent> [git]b :Gblame<CR>
@@ -235,6 +237,17 @@ function! s:my_tabline()  "{{{
 endfunction "}}}
 let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
 set showtabline=2
+"current buffer to new tab
+function! s:MoveToNewTab()
+    tab split
+    tabprevious
+    if winnr('$') > 1
+        close
+    elseif bufnr('$') > 1
+        buffer #
+    endif
+    tabnext
+endfunction
 "prefix
 nnoremap    [Tab]   <Nop>
 nmap    t [Tab]
@@ -252,6 +265,7 @@ nnoremap <silent> [Tab]P :tabfir<CR>
 nnoremap <silent> [Tab]o :tabonly<CR>
 nnoremap <silent> [Tab]<C-]> <C-w><C-]><C-w>T
 nnoremap <silent> [Tab]f <C-w>gf
+nnoremap <silent> [Tab]m :<C-u>call <SID>MoveToNewTab()<CR>
 
 ""autocmd
 autocmd Filetype vim set keywordprg=:help
@@ -270,6 +284,20 @@ augroup END
 
 "ctags;search ".tags" file until $HOME
 set tags=.tags;~
+
+""project original configuration
+" -> locate "[projectdir]/.vimconf" for activation
+augroup projectconfig
+  autocmd!
+  autocmd BufNewFile,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
+augroup END
+
+function! s:vimrc_local(loc)
+  let files = findfile('.vimconf', escape(a:loc, ' ') . ';', -1)
+  for i in reverse(filter(files, 'filereadable(v:val)'))
+    source `=i`
+  endfor
+endfunction
 
 "----------------------------------------------------------------------------
 "plugin initialization
