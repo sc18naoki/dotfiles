@@ -61,7 +61,6 @@ nmap [easy] <Plug>(easymotion-prefix)
 nmap [easy]j <Plug>(easymotion-j)
 nmap [easy]k <Plug>(easymotion-k)
 nnoremap [easy]h ^
-nnoremap [easy]H 0
 nnoremap [easy]l $
 "window resize;horizontally{increase/decrease},vertically{increase/decrease}
 nnoremap <silent>+ 3<C-w>+
@@ -285,11 +284,11 @@ augroup END
 "ctags;search ".tags" file until $HOME
 set tags=.tags;~
 
-""project original configuration
-" -> locate "[projectdir]/.vimconf" for activation
-augroup projectconfig
+""project config
+" -> locate "[projectdir]/.vimconf" to activate
+augroup projectconf
   autocmd!
-  autocmd BufNewFile,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
+  autocmd BufEnter * call s:vimrc_local(expand('<afile>:p:h'))
 augroup END
 
 function! s:vimrc_local(loc)

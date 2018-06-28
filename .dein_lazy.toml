@@ -81,7 +81,7 @@ hook_add = '''
   let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
 '''
 
-# bit foolish, need better one
+# said deprecated, but function itself is much preferable than others
 [[plugins]]
-repo = 'fishbullet/deoplete-ruby'
+repo = 'Shougo/deoplete-rct'
 on_ft = 'ruby'
