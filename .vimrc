@@ -36,8 +36,8 @@ set smartcase
 set backspace=indent,eol,start
 "yank
 nnoremap Y y$
-"insert blank line(:0=zero, not o/O)
-nnoremap <silent> 0 :<C-u>call append(expand('.'), '')<Cr>j
+"insert blank line
+nnoremap <silent> <CR> :<C-u>call append(expand('.'), '')<Cr>j
 "cursor:normal mode
 nnoremap <silent>j gj
 nnoremap <silent>k gk
@@ -268,15 +268,15 @@ nnoremap <silent> [Tab]m :<C-u>call <SID>MoveToNewTab()<CR>
 
 ""autocmd
 autocmd Filetype vim set keywordprg=:help
-augroup QuickQuitGroup
+augroup QuickQuit
   autocmd!
   autocmd FileType help,diff,Preview,ref* nnoremap <buffer> q <C-w>c
 augroup END
-augroup DeopleteConfigs
+augroup DeopleteConf
   autocmd!
   autocmd FileType c,php,python,ruby setlocal completeopt-=preview
 augroup END
-augroup IndentConfigs
+augroup RubyConf
   autocmd!
   autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 iskeyword+=?
 augroup END
@@ -286,7 +286,7 @@ set tags=.tags;~
 
 ""project config
 " -> locate "[projectdir]/.vimconf" to activate
-augroup projectconf
+augroup ProjectVim
   autocmd!
   autocmd BufEnter * call s:vimrc_local(expand('<afile>:p:h'))
 augroup END
