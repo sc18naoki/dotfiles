@@ -62,11 +62,13 @@ nmap [easy]j <Plug>(easymotion-j)
 nmap [easy]k <Plug>(easymotion-k)
 nnoremap [easy]h ^
 nnoremap [easy]l $
-"window resize;horizontally{increase/decrease},vertically{increase/decrease}
+"window resize{horizontally,vertically};gf;tag
 nnoremap <silent>+ 3<C-w>+
 nnoremap <silent>_ 3<C-w>-
 nnoremap <silent>= 3<C-w>>
 nnoremap <silent>- 3<C-w><
+nnoremap <C-w>f :vertical rightbelow wincmd f<CR>
+nnoremap <C-w>] :vertical rightbelow wincmd ]<CR>
 "remenber last cursor position
 augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |

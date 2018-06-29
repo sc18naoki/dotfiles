@@ -36,7 +36,7 @@ export XDG_CONFIG_HOME=~/.config
 PATH="/home/naoki/usr/local/anaconda3/bin:/home/naoki/usr/bin:/home/naoki/.config/composer/vendor/bin:$PATH"
 # LANGUAGE
 # -> go
-GOPATH="$HOME/usr/local/go"
+export GOPATH="$HOME/usr/local/go"
 PATH="${GOPATH}/bin:$PATH"
 # -> python
 export PYENV_ROOT="${HOME}/.pyenv"
