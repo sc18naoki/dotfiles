@@ -94,6 +94,9 @@ hook_source = '''
 
 [[plugins]]
 repo = 'majutsushi/tagbar'
+hook_add = '''
+  let g:tagbar_autofocus = 1
+'''
 
 [[plugins]]
 repo = 'w0rp/ale'
@@ -123,3 +126,9 @@ hook_add = '''
   let g:ref_use_vimproc = 1
   let g:ref_phpmanual_path = '/home/naoki/usr/doc/ref/php-chunked-xhtml'
 '''
+
+[[plugins]]
+repo = 'haya14busa/incsearch.vim'
+
+[[plugins]]
+repo = 'osyo-manga/vim-anzu'

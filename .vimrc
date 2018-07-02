@@ -8,7 +8,7 @@
 set number
 set display=lastline
 set pumheight=10
-set statusline=%y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}\ %r%h%w%F%m%=ROW=%l/%L,COL=%c\ %{ObsessionStatus()}[Lint:%{LinterStatus()}]
+set statusline=%y\ %r%h%w%F%m%=%{ObsessionStatus()}[Lint:%{LinterStatus()}]
 set laststatus=2
 highlight MyHighlightGroup ctermfg=black ctermbg=yellow
 match MyHighlightGroup /TODO\|NOTE\|MEMO/
@@ -32,12 +32,19 @@ set incsearch
 set wrapscan
 set ignorecase
 set smartcase
+map / <Plug>(incsearch-forward)
+map ? <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+map n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
+map N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
+nmap * <Plug>(anzu-star-with-echo)
+nmap # <Plug>(anzu-sharp-with-echo)
 "backspace for deletion
 set backspace=indent,eol,start
 "yank
 nnoremap Y y$
 "insert blank line
-nnoremap <silent> <CR> :<C-u>call append(expand('.'), '')<Cr>j
+nnoremap <silent> 0 :<C-u>call append(expand('.'), '')<Cr>j
 "cursor:normal mode
 nnoremap <silent>j gj
 nnoremap <silent>k gk
@@ -206,7 +213,7 @@ function! HandleURI()
   if l:uri != ""
     exec "!xdg-open \"" . l:uri . "\""
   else
-    echo "No URI found in line."
+    echo 'No URI found in line.'
   endif
 endfunction
 nnoremap <Leader>w :<C-u>call HandleURI()<CR>
@@ -268,15 +275,14 @@ nnoremap <silent> [Tab]<C-]> <C-w><C-]><C-w>T
 nnoremap <silent> [Tab]f <C-w>gf
 nnoremap <silent> [Tab]m :<C-u>call <SID>MoveToNewTab()<CR>
 
-""autocmd
-autocmd Filetype vim set keywordprg=:help
-augroup QuickQuit
+"AUTO
+augroup KJump
+  autocmd!
+  autocmd Filetype vim set keywordprg=:help
+augroup END
+augroup QQuit
   autocmd!
   autocmd FileType help,diff,Preview,ref* nnoremap <buffer> q <C-w>c
-augroup END
-augroup DeopleteConf
-  autocmd!
-  autocmd FileType c,php,python,ruby setlocal completeopt-=preview
 augroup END
 augroup RubyConf
   autocmd!
@@ -285,6 +291,8 @@ augroup END
 
 "ctags;search ".tags" file until $HOME
 set tags=.tags;~
+"hide preview window
+set completeopt-=preview
 
 ""project config
 " -> locate "[projectdir]/.vimconf" to activate
@@ -303,6 +311,7 @@ endfunction
 "----------------------------------------------------------------------------
 "plugin initialization
 "----------------------------------------------------------------------------
+"pkg manager: dein
 if &compatible
   set nocompatible
 endif
@@ -330,6 +339,8 @@ endif
 if dein#check_install()
   call dein#install()
 endif
+
+"end vimrc
 filetype plugin indent on
 syntax on
 
