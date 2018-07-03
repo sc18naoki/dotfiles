@@ -132,3 +132,6 @@ repo = 'haya14busa/incsearch.vim'
 
 [[plugins]]
 repo = 'osyo-manga/vim-anzu'
+
+[[plugins]]
+repo = 'flazz/vim-colorschemes'

@@ -8,7 +8,7 @@
 set number
 set display=lastline
 set pumheight=10
-set statusline=%y\ %r%h%w%F%m%=%{ObsessionStatus()}[Lint:%{LinterStatus()}]
+set statusline=%y\ %r%h%w%-0.40f%m%=ROW=%l/%L,COL=%c\ %{ObsessionStatus()}[Lint:%{LinterStatus()}]
 set laststatus=2
 highlight MyHighlightGroup ctermfg=black ctermbg=yellow
 match MyHighlightGroup /TODO\|NOTE\|MEMO/
@@ -39,6 +39,7 @@ map n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
 map N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
 nmap * <Plug>(anzu-star-with-echo)
 nmap # <Plug>(anzu-sharp-with-echo)
+nnoremap <silent> <Esc><Esc> :noh<CR>
 "backspace for deletion
 set backspace=indent,eol,start
 "yank
@@ -288,14 +289,18 @@ augroup RubyConf
   autocmd!
   autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 iskeyword+=?
 augroup END
+augroup ForceFF
+    autocmd!
+    autocmd BufNewFile,BufRead *.xaml setfiletype xml
+augroup END
 
 "ctags;search ".tags" file until $HOME
 set tags=.tags;~
 "hide preview window
 set completeopt-=preview
 
-""project config
-" -> locate "[projectdir]/.vimconf" to activate
+""project specific configuration
+" -> "/projectpath/.vimconf" to load
 augroup ProjectVim
   autocmd!
   autocmd BufEnter * call s:vimrc_local(expand('<afile>:p:h'))
@@ -343,4 +348,3 @@ endif
 "end vimrc
 filetype plugin indent on
 syntax on
-
