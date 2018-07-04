@@ -87,7 +87,6 @@ hook_source = '''
 repo = 'Yggdroot/indentLine'
 hook_source = '''
   let g:indentLine_enabled = 1
-  let g:indentLine_fileType = ['c','sh','php','smarty','python','ruby']
   let g:indentLine_char = '¦'
   let g:indentLine_first_char = '¦'
 '''
@@ -107,7 +106,7 @@ hook_add = '''
   highlight ALEError ctermbg=Darkgray ctermfg=red
   let g:ale_lint_on_text_changed = 'normal'
   let g:ale_lint_on_insert_leave = 1
-  let g:ale_echo_msg_format = '[%linter%]%s'
+  let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
   function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
     let l:all_errors = l:counts.error + l:counts.style_error
@@ -135,3 +134,9 @@ repo = 'osyo-manga/vim-anzu'
 
 [[plugins]]
 repo = 'flazz/vim-colorschemes'
+
+[[plugins]]
+repo = 'tpope/vim-speeddating'
+
+[[plugins]]
+repo = 'osyo-manga/vim-trip'
