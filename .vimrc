@@ -8,7 +8,7 @@
 set number
 set display=lastline
 set pumheight=10
-set statusline=%y\ %r%h%w%-0.37f%m%=ROW=%l/%L,COL=%c\ %{ObsessionStatus()}[Linter:%{LinterStatus()}]
+set statusline=%y\ %r%h%w%-0.37f%m%=ROW=%l/%L,COL=%c\ %{ObsessionStatus('[$obs]')}[Linter:%{LinterStatus()}]
 set laststatus=2
 highlight MyHighlightGroup ctermfg=black ctermbg=yellow
 match MyHighlightGroup /TODO\|NOTE\|MEMO/
@@ -69,19 +69,23 @@ cnoremap <C-e> <End>
 cnoremap <C-k> <C-E><C-U>
 "easy-motion
 nnoremap e <Nop>
-nmap e [easy]
-nmap [easy] <Plug>(easymotion-prefix)
-nmap [easy]j <Plug>(easymotion-j)
-nmap [easy]k <Plug>(easymotion-k)
-nnoremap [easy]h ^
-nnoremap [easy]l $
-"window resize{horizontally,vertically};gf;tag
+nmap e [motion]
+nmap [motion] <Plug>(easymotion-prefix)
+nmap [motion]j <Plug>(easymotion-j)
+nmap [motion]k <Plug>(easymotion-k)
+nnoremap [motion]h ^
+nnoremap [motion]l $
+"window control
+"resize
 nnoremap <silent>+ 3<C-w>+
 nnoremap <silent>_ 3<C-w>-
 nnoremap <silent>= 3<C-w>>
 nnoremap <silent>- 3<C-w><
+"gf
 nnoremap <C-w>f :vertical rightbelow wincmd f<CR>
+"tag jump
 nnoremap <C-w>] :vertical rightbelow wincmd ]<CR>
+nnoremap <C-w><C-]> :rightbelow wincmd ]<CR>
 "remenber last cursor position
 augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
