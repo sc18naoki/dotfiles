@@ -83,6 +83,7 @@ nnoremap <silent>= 3<C-w>>
 nnoremap <silent>- 3<C-w><
 "gf
 nnoremap <C-w>f :vertical rightbelow wincmd f<CR>
+nnoremap <C-w>gf :rightbelow wincmd f<CR>
 "tag jump
 nnoremap <C-w>] :vertical rightbelow wincmd ]<CR>
 nnoremap <C-w><C-]> :rightbelow wincmd ]<CR>

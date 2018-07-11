@@ -32,10 +32,12 @@ alias gcd='(){ SRCLOC=`ghq list|fzf`; if [ -z ${SRCLOC} ] ; then return 1; else 
 # git shortcut
 alias gs='git status'
 alias gd='git diff'
-alias gl='git log'
+alias gl='git log --stat'
 alias glo='git log --oneline'
+alias glp='git log -p'
 alias gb='git branch --list'
 alias gba='git branch -a'
+alias gbv='git branch -vv'
 alias gbr='git branch -r'
 alias gss='(){ if [ -n "${1}" ];then git stash push -u -m $1; else git stash push -u; fi }'
 alias gsx='(){ TARGETSTASH=`git stash list|cut -d':' -f1|fzf`; if [ -z ${TARGETSTASH} ];then echo "DROP not done"; else git stash drop ${TARGETSTASH}; unset TARGETSTASH ;fi }'
