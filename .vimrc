@@ -10,20 +10,19 @@ set display=lastline
 set pumheight=10
 set statusline=%y\ %r%h%w%-0.37f%m%=ROW=%l/%L,COL=%c\ %{ObsessionStatus('[$obs]')}[Linter:%{LinterStatus()}]
 set laststatus=2
-highlight MyHighlightGroup ctermfg=black ctermbg=yellow
-match MyHighlightGroup /TODO\|NOTE\|MEMO/
+"highlight MyHighlightGroup ctermfg=black ctermbg=yellow
+"match MyHighlightGroup /TODO\|NOTE\|MEMO/
 "cursorline
 set cursorline
-highlight CursorLine term=bold cterm=bold ctermbg=234
 "backup
 set backup
 set backupdir=~/.local/share/nvim/backup 
 set undofile
 set undodir=~/.local/share/nvim/undo
 "indent
-set expandtab
 set tabstop=4
 set shiftwidth=4
+set expandtab
 set autoindent
 set smartindent
 "search
@@ -32,11 +31,10 @@ set incsearch
 set wrapscan
 set ignorecase
 set smartcase
-map / <Plug>(incsearch-forward)
-map ? <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-map n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
-map N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
+nmap n <Plug>(anzu-n-with-echo)
+nmap gn <Plug>(anzu-jump-n)<Plug>(anzu-echo-search-status)
+nmap N <Plug>(anzu-N-with-echo)
+nmap gN <Plug>(anzu-jump-N)<Plug>(anzu-echo-search-status)
 nmap * <Plug>(anzu-star-with-echo)
 nmap # <Plug>(anzu-sharp-with-echo)
 nnoremap <silent> <Esc><Esc> :noh<CR>
@@ -54,27 +52,21 @@ nmap <silent> g<C-x> <Plug>(trip-decrement-ignore-minus)
 "cursor:normal mode
 nnoremap <silent>j gj
 nnoremap <silent>k gk
+nnoremap gh ^
+nnoremap gl $
 "cursor:insert mode
 inoremap <C-e> <C-o>$
 inoremap <C-a> <C-o>^
 inoremap <C-b> <Left>
 inoremap <C-f> <Right>
+inoremap <C-k> <Up>
 inoremap <C-j> <Down>
-inoremap <C-k> <UP>
 "cursor:command mode
 cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 cnoremap <C-k> <C-E><C-U>
-"easy-motion
-nnoremap e <Nop>
-nmap e [motion]
-nmap [motion] <Plug>(easymotion-prefix)
-nmap [motion]j <Plug>(easymotion-j)
-nmap [motion]k <Plug>(easymotion-k)
-nnoremap [motion]h ^
-nnoremap [motion]l $
 "window control
 "resize
 nnoremap <silent>+ 3<C-w>+
@@ -108,7 +100,7 @@ highlight NonText cterm=bold ctermfg=248 guifg=248
 set updatetime=100
 
 ""keybindings
-"prefix;SUB deprecated for temporary
+"prefix;SUB deprecated.
 nnoremap [sub] <Nop>
 nmap s [sub]
 nnoremap [SUB] <Nop>
@@ -142,9 +134,9 @@ nnoremap <silent> [sub]? :Commands<CR>
 nnoremap <silent> [sub]h :Helptags<CR>
 "neosnippet
 nnoremap <silent> [sub]e :NeoSnippetEdit<CR>
-"Vimrc
-nnoremap <silent> <Space>, :Vimrc<CR>
-nnoremap <silent> <Space>. :Vimrcall<CR>
+""Vimrc
+"nnoremap <silent> <Space>, :Vimrc<CR>
+"nnoremap <silent> <Space>. :Vimrcall<CR>
 "save/write
 nnoremap <Leader>W :w !sudo tee % > /dev/null
 "nerdtree
@@ -219,7 +211,7 @@ command! -bar -nargs=+ -complete=file Diff  call s:vimdiff_in_newtab(<f-args>)
 command DiffOrig tabedit % | rightb vert new | set buftype=nofile | read ++edit # | 0d_| diffthis | wincmd p | diffthis
 "HandleURI <- open url with preset browser
 function! HandleURI()
-  let l:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;:]*')
+  let l:uri = matchstr(getline('.'), '[a-z]*:\/\/[^ >,;:]*')
   echo l:uri
   if l:uri != ""
     exec "!xdg-open \"" . l:uri . "\""
@@ -358,3 +350,5 @@ endif
 "end vimrc
 filetype plugin indent on
 syntax on
+colorscheme railscasts
+highlight CursorLine term=bold cterm=bold ctermbg=235

@@ -73,6 +73,11 @@ hook_add = '''
 repo = 'Shougo/deoplete-rct'
 on_ft = 'ruby'
 
+[[plugins]]
+repo = 'zchee/deoplete-go'
+build = 'make'
+on_ft = 'go'
+
 ### わかんねえ。家でやれる時に調べる。
 #[[plugins]]
 #repo = 'Omnisharp/omnisharp-vim'
