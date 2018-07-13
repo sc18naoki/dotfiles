@@ -51,7 +51,7 @@ alias ccd='cd ~/.ghq/github.com/sc18naoki/dotfiles/'
 alias -s html=vivaldi
 alias -s md=vivaldi
 alias -s vim='nvim -S'
-
+alias -s exe='mono'
 # minor amendment:even for clipboard integration of vim, required.
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
