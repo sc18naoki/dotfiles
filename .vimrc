@@ -8,7 +8,7 @@
 set number
 set display=lastline
 set pumheight=10
-set statusline=%y\ %r%h%w%-0.37f%m%=ROW=%l/%L,COL=%c\ %{ObsessionStatus('[$obs]')}[Lint:%{LinterStatus()}]
+set statusline=%y\ %r%h%w%-0.37f%m%=ROW=%l/%L,COL=%c\ %{ObsessionStatus('[$obs]')}[LINT:%{LinterStatus()}]
 set laststatus=2
 "backup
 set backup
@@ -48,8 +48,8 @@ nmap <silent> go :<C-u>call append(expand('.'), '')<Cr>j
 nmap <silent> g<C-a> <Plug>(trip-increment-ignore-minus)
 nmap <silent> g<C-x> <Plug>(trip-decrement-ignore-minus)
 "cursor:normal mode
-nnoremap <silent>j gj
-nnoremap <silent>k gk
+nnoremap j gj
+nnoremap k gk
 nnoremap gh ^
 nnoremap gl $
 "cursor:insert mode
@@ -91,11 +91,9 @@ set ambiwidth=double
 set updatetime=100
 
 ""keybindings
-"prefix;SUB deprecated.
+"prefix
 nnoremap [sub] <Nop>
 nmap s [sub]
-nnoremap [SUB] <Nop>
-nmap S [SUB]
 "substituiton
 nnoremap [sub]* *:%s/<C-r>///gI<Left><Left><Left>
 nnoremap [sub]s :%s///gI<Left><Left><Left><Left>
@@ -105,8 +103,6 @@ nnoremap <silent> [sub]d :DiffOrig<CR>
 set hidden
 nnoremap <silent> [sub]n :bn<CR>
 nnoremap <silent> [sub]p :bp<CR>
-"nnoremap <silent> [SUB]N :BF<CR>
-"nnoremap <silent> [SUB]P :BB<CR>
 nnoremap <silent> <Leader>q :BD<CR>
 nnoremap <silent> <Leader>Q :BufDel<CR>
 "fzf.vim
@@ -125,9 +121,6 @@ nnoremap <silent> [sub]? :Commands<CR>
 nnoremap <silent> [sub]h :Helptags<CR>
 "neosnippet
 nnoremap <silent> [sub]e :NeoSnippetEdit<CR>
-""Vimrc
-"nnoremap <silent> <Space>, :Vimrc<CR>
-"nnoremap <silent> <Space>. :Vimrcall<CR>
 "save/write
 nnoremap <Leader>W :w !sudo tee % > /dev/null
 "nerdtree
@@ -153,8 +146,6 @@ nnoremap <silent> <Leader>o :Obsession<CR>
 nnoremap <silent> <Leader>O :Obsession!<CR>
 "ALE: Toggle on/off
 nnoremap <silent> <Leader>A :ALEToggle<CR>
-"IngentLine: Toggle on/off
-nnoremap <silent> <Leader>I :IndentLinesToggle<CR>
 "GitGutter: Toggle on/off
 nnoremap <silent> <Leader>G :GitGutterToggle<CR>
 
@@ -211,9 +202,6 @@ function! HandleURI()
   endif
 endfunction
 nnoremap <Leader>w :<C-u>call HandleURI()<CR>
-"Vimrc <- open ~/.vimrc with tab
-command! Vimrc tablast | tabedit ~/.vimrc
-command! Vimrcall tablast | tabedit ~/.vimrc | tabedit ~/.dein.toml | tabedit ~/.dein_lazy.toml | tabp | tabp
 
 ""tab control
 function! s:SID_PREFIX()
@@ -250,20 +238,20 @@ function! s:MoveToNewTab()
     endif
     tabnext
 endfunction
-"jump
+"jump - 'g' for prefix
 for n in range(1, 9)
   execute 'nnoremap <silent> g'.n  ':<C-u>tabnext'.n.'<CR>'
 endfor
 "create,edit,close,next(last),previous(first),only,tag,path
-nnoremap <silent> gt :tablast <bar> tabnew<CR>
+nnoremap <silent> ge :tablast <bar> tabnew<CR>
 nnoremap <silent> gw :tabclose<CR>
+nnoremap <silent> gx :tabonly<CR>
 nnoremap <silent> gn :tabnext<CR>
 nnoremap <silent> gN :tabl<CR>
 nnoremap <silent> gp :tabprevious<CR>
 nnoremap <silent> gP :tabfir<CR>
 nnoremap <silent> g<C-]> <C-w><C-]><C-w>T
-" nnoremap <silent> [Tab]f <C-w>gf
-nnoremap <silent> gm :<C-u>call <SID>MoveToNewTab()<CR>
+nnoremap <silent> gt :<C-u>call <SID>MoveToNewTab()<CR>
 
 "AUTO
 augroup KJump
@@ -334,14 +322,16 @@ if dein#check_install()
   call dein#install()
 endif
 
-"end vimrc
+"----------------------------------------------------------------------------
+"finalize
+"----------------------------------------------------------------------------
 filetype plugin indent on
 syntax on
 "colorscheme
 colorscheme dante
 "cursorline
 set cursorline
-highlight CursorLine term=bold cterm=bold ctermbg=235
+highlight CursorLine term=bold cterm=bold ctermbg=234
 "highlight
 highlight HighlightWords ctermfg=black ctermbg=yellow
 match HighlightWords /TODO\|NOTE\|MEMO/
