@@ -8,12 +8,8 @@
 set number
 set display=lastline
 set pumheight=10
-set statusline=%y\ %r%h%w%-0.37f%m%=ROW=%l/%L,COL=%c\ %{ObsessionStatus('[$obs]')}[Linter:%{LinterStatus()}]
+set statusline=%y\ %r%h%w%-0.37f%m%=ROW=%l/%L,COL=%c\ %{ObsessionStatus('[$obs]')}[Lint:%{LinterStatus()}]
 set laststatus=2
-"highlight MyHighlightGroup ctermfg=black ctermbg=yellow
-"match MyHighlightGroup /TODO\|NOTE\|MEMO/
-"cursorline
-set cursorline
 "backup
 set backup
 set backupdir=~/.local/share/nvim/backup 
@@ -31,6 +27,8 @@ set incsearch
 set wrapscan
 set ignorecase
 set smartcase
+nmap ; <Plug>(clever-f-repeat-forward)
+nmap , <Plug>(clever-f-repeat-back)
 nmap n <Plug>(anzu-n-with-echo)
 nmap gn <Plug>(anzu-jump-n)<Plug>(anzu-echo-search-status)
 nmap N <Plug>(anzu-N-with-echo)
@@ -88,13 +86,6 @@ augroup END
 set clipboard+=unnamedplus
 "drawing ZENKAKU symbol
 set ambiwidth=double
-"highlight
-highlight Search ctermfg=0 ctermbg=11 guifg=Blue guibg=Yellow
-highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=22
-highlight DiffDelete cterm=bold ctermfg=10 ctermbg=52
-highlight DiffChange cterm=bold ctermfg=10 ctermbg=17
-highlight DiffText   cterm=bold ctermfg=10 ctermbg=21
-highlight NonText cterm=bold ctermfg=248 guifg=248
 ""system
 "updatetime: decrease delay from 4000 to 100
 set updatetime=100
@@ -259,24 +250,20 @@ function! s:MoveToNewTab()
     endif
     tabnext
 endfunction
-"prefix
-nnoremap    [Tab]   <Nop>
-nmap    t [Tab]
 "jump
 for n in range(1, 9)
-  execute 'nnoremap <silent> [Tab]'.n  ':<C-u>tabnext'.n.'<CR>'
+  execute 'nnoremap <silent> g'.n  ':<C-u>tabnext'.n.'<CR>'
 endfor
 "create,edit,close,next(last),previous(first),only,tag,path
-nnoremap <silent> [Tab]t :tablast <bar> tabnew<CR>
-nnoremap <silent> [Tab]w :tabclose<CR>
-nnoremap <silent> [Tab]n :tabnext<CR>
-nnoremap <silent> [Tab]N :tabl<CR>
-nnoremap <silent> [Tab]p :tabprevious<CR>
-nnoremap <silent> [Tab]P :tabfir<CR>
-nnoremap <silent> [Tab]o :tabonly<CR>
-nnoremap <silent> [Tab]<C-]> <C-w><C-]><C-w>T
-nnoremap <silent> [Tab]f <C-w>gf
-nnoremap <silent> [Tab]m :<C-u>call <SID>MoveToNewTab()<CR>
+nnoremap <silent> gt :tablast <bar> tabnew<CR>
+nnoremap <silent> gw :tabclose<CR>
+nnoremap <silent> gn :tabnext<CR>
+nnoremap <silent> gN :tabl<CR>
+nnoremap <silent> gp :tabprevious<CR>
+nnoremap <silent> gP :tabfir<CR>
+nnoremap <silent> g<C-]> <C-w><C-]><C-w>T
+" nnoremap <silent> [Tab]f <C-w>gf
+nnoremap <silent> gm :<C-u>call <SID>MoveToNewTab()<CR>
 
 "AUTO
 augroup KJump
@@ -350,5 +337,17 @@ endif
 "end vimrc
 filetype plugin indent on
 syntax on
-colorscheme railscasts
+"colorscheme
+colorscheme dante
+"cursorline
+set cursorline
 highlight CursorLine term=bold cterm=bold ctermbg=235
+"highlight
+highlight HighlightWords ctermfg=black ctermbg=yellow
+match HighlightWords /TODO\|NOTE\|MEMO/
+highlight Search ctermfg=0 ctermbg=11 guifg=Blue guibg=Yellow
+highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=22
+highlight DiffDelete cterm=bold ctermfg=10 ctermbg=52
+highlight DiffChange cterm=bold ctermfg=10 ctermbg=17
+highlight DiffText   cterm=bold ctermfg=10 ctermbg=21
+highlight NonText cterm=bold ctermfg=248 guifg=248
