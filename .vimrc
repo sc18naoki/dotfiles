@@ -77,6 +77,8 @@ nnoremap <C-w>gf :rightbelow wincmd f<CR>
 "tag jump
 nnoremap <C-w>] :vertical rightbelow wincmd ]<CR>
 nnoremap <C-w><C-]> :rightbelow wincmd ]<CR>
+"scrollbind shortcut
+nnoremap <silent> <Leader>b :call ScrollBind()<CR>
 "remenber last cursor position
 augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -149,8 +151,8 @@ nnoremap <silent> <Leader>A :ALEToggle<CR>
 "GitGutter: Toggle on/off
 nnoremap <silent> <Leader>G :GitGutterToggle<CR>
 
-""user defined function/command
-"Comp <- copare files side by side
+""function
+"Comp = copare files side by side
 function! s:compare(...)
   if a:0 == 1
     tabedit %:p
@@ -167,7 +169,7 @@ function! s:compare(...)
   endif
 endfunction
 command! -bar -nargs=+ -complete=file Compare  call s:compare(<f-args>)
-"DeleteHiddenBuffers <- delete hidden buffer
+"DeleteHiddenBuffers = delete hidden buffer
 function DeleteHiddenBuffers()
     let tpbl=[]
     call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
@@ -176,7 +178,7 @@ function DeleteHiddenBuffers()
     endfor
 endfunction
 command! BufDel call DeleteHiddenBuffers()
-"Diff <- diff view
+"Diff = diff view
 function! s:vimdiff_in_newtab(...)
   if a:0 == 1
     tabedit %:p
@@ -189,20 +191,48 @@ function! s:vimdiff_in_newtab(...)
   endif
 endfunction
 command! -bar -nargs=+ -complete=file Diff  call s:vimdiff_in_newtab(<f-args>)
-"DiffOrig <- show modified from last change
+"DiffOrig = show modified from last change
 command DiffOrig tabedit % | rightb vert new | set buftype=nofile | read ++edit # | 0d_| diffthis | wincmd p | diffthis
-"HandleURI <- open url with preset browser
+"HandleURI = open url with preset browser
 function! HandleURI()
   let l:uri = matchstr(getline('.'), '[a-z]*:\/\/[^ >,;:]*')
   echo l:uri
-  if l:uri != ""
+  if l:uri != ''
     exec "!xdg-open \"" . l:uri . "\""
   else
     echo 'No URI found in line.'
   endif
 endfunction
 nnoremap <Leader>w :<C-u>call HandleURI()<CR>
+"ScrollBind = scrollbind both window
+function! ScrollBind(...)
+  let l:curr_bufnr = bufnr('%')
+  let g:scb_status = ( a:0 > 0 ? a:1 : !exists('g:scb_status') || !g:scb_status )
+  if !exists('g:scb_pos') | let g:scb_pos = {} | endif
 
+  let l:loop_cont = 1
+  while l:loop_cont
+    setl noscrollbind
+    if !g:scb_status && has_key( g:scb_pos, bufnr('%') )
+      call setpos( '.', g:scb_pos[ bufnr('%') ] )
+    endif
+    execute 'wincmd w'
+    let l:loop_cont = !( l:curr_bufnr == bufnr('%') )
+  endwhile
+
+  if g:scb_status
+    let l:loop_cont = 1
+    while l:loop_cont
+      let g:scb_pos[ bufnr('%') ] = getpos( '.' )
+      normal! gg
+      setl scrollbind
+      execute 'wincmd w'
+      let l:loop_cont = !( l:curr_bufnr == bufnr('%') )
+    endwhile
+  else
+    let g:scb_pos = {}
+  endif
+endfunction
 ""tab control
 function! s:SID_PREFIX()
   return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
@@ -227,23 +257,13 @@ function! s:my_tabline()  "{{{
 endfunction "}}}
 let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
 set showtabline=2
-"current buffer to new tab
-function! s:MoveToNewTab()
-    tab split
-    tabprevious
-    if winnr('$') > 1
-        close
-    elseif bufnr('$') > 1
-        buffer #
-    endif
-    tabnext
-endfunction
 "jump - 'g' for prefix
 for n in range(1, 9)
   execute 'nnoremap <silent> g'.n  ':<C-u>tabnext'.n.'<CR>'
 endfor
 "create,edit,close,next(last),previous(first),only,tag,path
 nnoremap <silent> ge :tablast <bar> tabnew<CR>
+nnoremap <silent> gE :tabnew<CR>
 nnoremap <silent> gw :tabclose<CR>
 nnoremap <silent> gx :tabonly<CR>
 nnoremap <silent> gn :tabnext<CR>
@@ -251,14 +271,14 @@ nnoremap <silent> gN :tabl<CR>
 nnoremap <silent> gp :tabprevious<CR>
 nnoremap <silent> gP :tabfir<CR>
 nnoremap <silent> g<C-]> <C-w><C-]><C-w>T
-nnoremap <silent> gt :<C-u>call <SID>MoveToNewTab()<CR>
+nnoremap <silent> gt :wincmd T<CR>
 
 "AUTO
-augroup KJump
+augroup KeywordSearch
   autocmd!
   autocmd Filetype vim set keywordprg=:help
 augroup END
-augroup QQuit
+augroup QuickQuit
   autocmd!
   autocmd FileType help,diff,Preview,ref* nnoremap <buffer> q <C-w>c
 augroup END
@@ -266,7 +286,7 @@ augroup RubyConf
   autocmd!
   autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 iskeyword+=?
 augroup END
-augroup ForceFF
+augroup ForceFileType
     autocmd!
     autocmd BufNewFile,BufRead *.xaml setfiletype xml
 augroup END
@@ -293,7 +313,6 @@ endfunction
 "----------------------------------------------------------------------------
 "plugin initialization
 "----------------------------------------------------------------------------
-"pkg manager: dein
 if &compatible
   set nocompatible
 endif
@@ -329,9 +348,6 @@ filetype plugin indent on
 syntax on
 "colorscheme
 colorscheme dante
-"cursorline
-set cursorline
-highlight CursorLine term=bold cterm=bold ctermbg=234
 "highlight
 highlight HighlightWords ctermfg=black ctermbg=yellow
 match HighlightWords /TODO\|NOTE\|MEMO/
