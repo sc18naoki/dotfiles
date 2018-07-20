@@ -21,6 +21,7 @@ set shiftwidth=4
 set expandtab
 set autoindent
 set smartindent
+set breakindent
 "search
 set hlsearch
 set incsearch
@@ -199,7 +200,7 @@ command DiffOrig tabedit % | rightb vert new | set buftype=nofile | read ++edit 
 function! HandleURI()
   let l:uri = matchstr(getline('.'), '[a-z]*:\/\/[^ >,;:]*')
   echo l:uri
-  if l:uri != ''
+  if l:uri !=# ''
     exec "!xdg-open \"" . l:uri . "\""
   else
     echo 'No URI found in line.'
@@ -319,10 +320,6 @@ endfunction
 "----------------------------------------------------------------------------
 "plugin initialization
 "----------------------------------------------------------------------------
-if &compatible
-  set nocompatible
-endif
-
 let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
