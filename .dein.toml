@@ -120,5 +120,16 @@ repo = 'osyo-manga/vim-trip'
 [[plugins]]
 repo = 'rhysd/clever-f.vim'
 hook_add = '''
+  let g:clever_f_not_overwrites_standard_mappings = 1
   let g:clever_f_show_prompt = 1
+  let g:clever_f_smart_case = 1
+'''
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+hook_source = '''
+  let g:indentLine_enabled = 1
+  let g:indentLine_fileTypeExclude = ['help','man','ref-man','text']
+  let g:indentLine_char = '¦'
+  let g:indentLine_first_char = '¦'
 '''

@@ -27,6 +27,8 @@ set incsearch
 set wrapscan
 set ignorecase
 set smartcase
+nmap f <Plug>(clever-f-f)
+nmap F <Plug>(clever-f-F)
 nmap ; <Plug>(clever-f-repeat-forward)
 nmap , <Plug>(clever-f-repeat-back)
 nmap n <Plug>(anzu-n-with-echo)
@@ -257,21 +259,25 @@ function! s:my_tabline()  "{{{
 endfunction "}}}
 let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
 set showtabline=2
-"jump - 'g' for prefix
+"prefix
+nnoremap    [Tab]   <Nop>
+nmap    t [Tab]
+"jump
 for n in range(1, 9)
-  execute 'nnoremap <silent> g'.n  ':<C-u>tabnext'.n.'<CR>'
+  execute 'nnoremap <silent> [Tab]'.n  ':<C-u>tabnext'.n.'<CR>'
 endfor
 "create,edit,close,next(last),previous(first),only,tag,path
-nnoremap <silent> ge :tablast <bar> tabnew<CR>
-nnoremap <silent> gE :tabnew<CR>
-nnoremap <silent> gw :tabclose<CR>
-nnoremap <silent> gx :tabonly<CR>
-nnoremap <silent> gn :tabnext<CR>
-nnoremap <silent> gN :tabl<CR>
-nnoremap <silent> gp :tabprevious<CR>
-nnoremap <silent> gP :tabfir<CR>
-nnoremap <silent> g<C-]> <C-w><C-]><C-w>T
-nnoremap <silent> gt :wincmd T<CR>
+nnoremap <silent> [Tab]t :tablast <bar> tabnew<CR>
+nnoremap <silent> [Tab]T :tabnew<CR>
+nnoremap <silent> [Tab]w :tabclose<CR>
+nnoremap <silent> [Tab]o :tabonly<CR>
+nnoremap <silent> [Tab]n :tabnext<CR>
+nnoremap <silent> [Tab]N :tabl<CR>
+nnoremap <silent> [Tab]p :tabprevious<CR>
+nnoremap <silent> [Tab]P :tabfir<CR>
+nnoremap <silent> [Tab]<C-]> <C-w><C-]><C-w>T
+nnoremap <silent> [Tab]f <C-w>gf
+nnoremap <silent> [Tab]m :wincmd T<CR>
 
 "AUTO
 augroup KeywordSearch
