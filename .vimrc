@@ -8,7 +8,7 @@
 set number
 set display=lastline
 set pumheight=10
-set statusline=%y\ %r%h%w%-0.37f%m%=ROW=%l/%L,COL=%c\ %{ObsessionStatus('[$obs]')}[LINT:%{LinterStatus()}]
+set statusline=%y\ %r%h%w%-0.37f%m%=ROW=%l/%L,COL=%c\ %{ObsessionStatus()}%{LinterStatus()}
 set laststatus=2
 "backup
 set backup
@@ -28,10 +28,6 @@ set incsearch
 set wrapscan
 set ignorecase
 set smartcase
-nmap f <Plug>(clever-f-f)
-nmap F <Plug>(clever-f-F)
-nmap ; <Plug>(clever-f-repeat-forward)
-nmap , <Plug>(clever-f-repeat-back)
 nmap n <Plug>(anzu-n-with-echo)
 nmap gn <Plug>(anzu-jump-n)<Plug>(anzu-echo-search-status)
 nmap N <Plug>(anzu-N-with-echo)
@@ -55,6 +51,8 @@ nnoremap j gj
 nnoremap k gk
 nnoremap gh ^
 nnoremap gl $
+nmap <C-j> <Plug>(edgemotion-j)
+nmap <C-k> <Plug>(edgemotion-k)
 "cursor:insert mode
 inoremap <C-e> <C-o>$
 inoremap <C-a> <C-o>^
@@ -303,19 +301,19 @@ set tags=.tags;~
 "hide preview window
 set completeopt-=preview
 
-""project specific configuration
-" -> "/projectpath/.vimconf" to load
-augroup ProjectVim
-  autocmd!
-  autocmd BufEnter * call s:vimrc_local(expand('<afile>:p:h'))
-augroup END
-
-function! s:vimrc_local(loc)
-  let files = findfile('.vimconf', escape(a:loc, ' ') . ';', -1)
-  for i in reverse(filter(files, 'filereadable(v:val)'))
-    source `=i`
-  endfor
-endfunction
+"""project specific configuration
+"" -> "/projectpath/.vimconf" to load
+"augroup ProjectVim
+"  autocmd!
+"  autocmd BufEnter * call s:vimrc_local(expand('<afile>:p:h'))
+"augroup END
+"
+"function! s:vimrc_local(loc)
+"  let files = findfile('.vimconf', escape(a:loc, ' ') . ';', -1)
+"  for i in reverse(filter(files, 'filereadable(v:val)'))
+"    source `=i`
+"  endfor
+"endfunction
 
 "----------------------------------------------------------------------------
 "plugin initialization
@@ -360,3 +358,9 @@ highlight DiffDelete cterm=bold ctermfg=10 ctermbg=52
 highlight DiffChange cterm=bold ctermfg=10 ctermbg=17
 highlight DiffText   cterm=bold ctermfg=10 ctermbg=21
 highlight NonText cterm=bold ctermfg=248 guifg=248
+
+"----------------------------------------------------------------------------
+"working area
+"----------------------------------------------------------------------------
+"nmap <Leader>l :call fzf#run({'source': 'ls'})<CR>
+"nmap <Leader>s :call fzf#run({'dir': '.'})<CR>
