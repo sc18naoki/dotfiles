@@ -136,13 +136,13 @@ nnoremap <silent> <Space>t :TagbarToggle<CR>
 nnoremap [git] <Nop>
 nmap <Space>g [git]
 nnoremap <silent> [git]s :Gstatus<CR>
-nnoremap <silent> [git]a :Gwrite<CR>
-nnoremap <silent> [git]c :Gcommit<CR>
 nnoremap <silent> [git]d :Gvdiff<CR>
+nnoremap <silent> [git]m :GFiles?<CR>
 nnoremap <silent> [git]v :GitGutterPreviewHunk<CR><C-w>b
 nnoremap <silent> [git]p :GitGutterPrevHunk<CR>
 nnoremap <silent> [git]n :GitGutterNextHunk<CR>
 nnoremap <silent> [git]b :Gblame<CR>
+nnoremap <silent> [git]c :BCommits<CR>
 nnoremap <silent> [git]l :Commits<CR>
 "vim-obsession;{create/halt-recording},destroy
 nnoremap <silent> <Leader>o :Obsession<CR>
