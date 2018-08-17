@@ -5,7 +5,7 @@
 alias ls='ls -CF'
 alias sl='ls -CF'
 alias ll='ls -1'
-alias lt='ls -1tA'
+alias lt='ls -1t'
 alias la='ls -CFal'
 alias lls='tree -N -L 2'
 alias lla='tree -a -N -L 2'
