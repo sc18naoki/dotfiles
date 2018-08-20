@@ -87,10 +87,10 @@ augroup vimrcEx
 augroup END
 "clipboard integration
 set clipboard+=unnamedplus
-"drawing ZENKAKU symbol
+"multibyte rendering
 set ambiwidth=double
 ""system
-"updatetime: decrease delay from 4000 to 100
+"decrease delay from 4000(=default) to 100
 set updatetime=100
 
 ""keybindings
