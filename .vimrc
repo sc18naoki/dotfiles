@@ -48,7 +48,9 @@ nmap <silent> g<C-a> <Plug>(trip-increment-ignore-minus)
 nmap <silent> g<C-x> <Plug>(trip-decrement-ignore-minus)
 "cursor:normal mode
 nnoremap j gj
+nnoremap gj j
 nnoremap k gk
+nnoremap gk k
 nnoremap gh ^
 nnoremap gl $
 nmap <C-j> <Plug>(edgemotion-j)

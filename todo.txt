@@ -1,5 +1,0 @@
-vim NOTE:
-
-autocmd BufWritePost * :!echo "hello"
-
-これの応用として、保存時(よりかはクローズ時かも)にscpでサーバでの変更を手元の環境に反映させたい。
