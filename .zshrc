@@ -29,7 +29,7 @@ alias taginit='ctags -R -f .tags'
 alias syncinit='cp ~/usr/doc/vimconf/sync_template.vim ./.vimconf'
 alias markdown='python -m markdown'
 alias vcat='(){ if [ -n "${1}" ];then cat $1|sed "s/,/ ,/g"|column -t -s,|less -S; else echo "please specify csv file"; fi }'
-alias rfcid='(){ ID=`cat ~/usr/doc/ref/rfc-index.txt|fzf`; if [ -z ${ID} ]; then return 1 ; else echo ${ID}; unset ID ; fi }'
+alias rfcid='(){ ID=`cat ~/usr/doc/share/rfc/rfc-index.txt|fzf`; if [ -z ${ID} ]; then return 1 ; else echo ${ID}; unset ID ; fi }'
 alias gcd='(){ SRCLOC=`ghq list|fzf`; if [ -z ${SRCLOC} ] ; then return 1; else cd ~/.ghq/${SRCLOC}; unset SRCLOC ; fi }'
 # git shortcut
 alias gs='git status'
@@ -48,6 +48,7 @@ alias gsr='(){ TARGETSTASH=`git stash list|cut -d':' -f1|fzf`; if [ -z ${TARGETS
 # cd shortcut
 alias hcd='cd ~/Documents/GoogleDrive/help'
 alias ccd='cd ~/.ghq/github.com/sc18naoki/dotfiles/'
+alias cds='() { target_path=`cat ~/usr/doc/share/shell/cd_path.dat|fzf`; if [ -z ${target_path} ]; then :;else cd ${target_path};fi }'
 # execute on filetype
 alias -s html=vivaldi
 alias -s md=vivaldi

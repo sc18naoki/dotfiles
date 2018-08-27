@@ -122,8 +122,3 @@ repo = 'haya14busa/vim-edgemotion'
 
 [[plugins]]
 repo = 'andymass/vim-tradewinds'
-
-# testing if better than any other
-# but, well, why not add keybinds to fzf.vim? where you are able to use nvim with python3.
-[[plugins]]
-repo = 'vim-scripts/QuickBuf'

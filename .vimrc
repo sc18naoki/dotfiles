@@ -80,8 +80,8 @@ nnoremap <C-w>gf :rightbelow wincmd f<CR>
 "tag jump
 nnoremap <C-w>] :vertical rightbelow wincmd ]<CR>
 nnoremap <C-w><C-]> :rightbelow wincmd ]<CR>
-"scrollbind shortcut
-nnoremap <silent> <Leader>b :call ScrollBind()<CR>
+"hide preview window
+set completeopt-=preview
 "remenber last cursor position
 augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -94,6 +94,8 @@ set ambiwidth=double
 ""system
 "decrease delay from 4000(=default) to 100
 set updatetime=100
+"enable mouse
+set mouse=a
 
 ""keybindings
 "prefix
@@ -153,25 +155,10 @@ nnoremap <silent> <Leader>O :Obsession!<CR>
 nnoremap <silent> <Leader>A :ALEToggle<CR>
 "GitGutter: Toggle on/off
 nnoremap <silent> <Leader>G :GitGutterToggle<CR>
+"scrollbind shortcut
+nnoremap <silent> <Leader>b :call ScrollBind()<CR>
 
 ""function
-"Comp = copare files side by side
-function! s:compare(...)
-  if a:0 == 1
-    tabedit %:p
-	setl scrollbind
-    exec 'rightbelow vnew ' . a:1
-	setl scrollbind
-  else
-    exec 'tabedit ' . a:1
-    setl scrollbind
-    for l:file in a:000[1 :]
-      exec 'rightbelow vnew ' . l:file
-      setl scrollbind
-    endfor
-  endif
-endfunction
-command! -bar -nargs=+ -complete=file Compare  call s:compare(<f-args>)
 "DeleteHiddenBuffers = delete hidden buffer
 function DeleteHiddenBuffers()
     let tpbl=[]
@@ -236,7 +223,8 @@ function! ScrollBind(...)
     let g:scb_pos = {}
   endif
 endfunction
-""tab control
+
+""tab
 function! s:SID_PREFIX()
   return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
 endfunction
@@ -267,9 +255,8 @@ nmap    t [Tab]
 for n in range(1, 9)
   execute 'nnoremap <silent> [Tab]'.n  ':<C-u>tabnext'.n.'<CR>'
 endfor
-"create,edit,close,next(last),previous(first),only,tag,path
+"new,close(only),next(last),previous(first),tag,path,move
 nnoremap <silent> [Tab]t :tablast <bar> tabnew<CR>
-nnoremap <silent> [Tab]T :tabnew<CR>
 nnoremap <silent> [Tab]w :tabclose<CR>
 nnoremap <silent> [Tab]o :tabonly<CR>
 nnoremap <silent> [Tab]n :tabnext<CR>
@@ -280,12 +267,12 @@ nnoremap <silent> [Tab]<C-]> <C-w><C-]><C-w>T
 nnoremap <silent> [Tab]f <C-w>gf
 nnoremap <silent> [Tab]m :wincmd T<CR>
 
-"AUTO
-augroup KeywordSearch
+"autocmds
+augroup KeywordPrgs
   autocmd!
   autocmd Filetype vim set keywordprg=:help
 augroup END
-augroup QuickQuit
+augroup QQuits
   autocmd!
   autocmd FileType help,diff,Preview,ref* nnoremap <buffer> q <C-w>c
 augroup END
@@ -293,15 +280,14 @@ augroup RubyConf
   autocmd!
   autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 iskeyword+=?
 augroup END
-augroup ForceFileType
+augroup FTrecognitions
     autocmd!
     autocmd BufNewFile,BufRead *.xaml setfiletype xml
 augroup END
 
+""externals
 "ctags;search ".tags" file until $HOME
 set tags=.tags;~
-"hide preview window
-set completeopt-=preview
 
 """project specific configuration
 "" -> "/projectpath/.vimconf" to load
