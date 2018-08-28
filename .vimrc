@@ -94,8 +94,6 @@ set ambiwidth=double
 ""system
 "decrease delay from 4000(=default) to 100
 set updatetime=100
-"enable mouse
-set mouse=a
 
 ""keybindings
 "prefix
@@ -290,14 +288,14 @@ augroup END
 set tags=.tags;~
 
 """project specific configuration
-"" -> "/projectpath/.vimconf" to load
+"" -> "/[projectpath]/.pvimrc" to load
 "augroup ProjectVim
 "  autocmd!
 "  autocmd BufEnter * call s:vimrc_local(expand('<afile>:p:h'))
 "augroup END
 "
 "function! s:vimrc_local(loc)
-"  let files = findfile('.vimconf', escape(a:loc, ' ') . ';', -1)
+"  let files = findfile('.pvimrc', escape(a:loc, ' ') . ';', -1)
 "  for i in reverse(filter(files, 'filereadable(v:val)'))
 "    source `=i`
 "  endfor
