@@ -32,6 +32,6 @@ configurations & list of tools
 
 ./env/	= customize guideline for shell environment
 
-./tools/	= any tools, with config file
+./tools/	= any tool configurations
 
-./GUI/	= settings/requiremnt or else of GUI applications
+./GUI/	= settings/requiremnt for GUI applications
