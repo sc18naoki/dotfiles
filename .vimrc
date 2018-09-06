@@ -29,9 +29,7 @@ set wrapscan
 set ignorecase
 set smartcase
 nmap n <Plug>(anzu-n-with-echo)
-nmap gn <Plug>(anzu-jump-n)<Plug>(anzu-echo-search-status)
 nmap N <Plug>(anzu-N-with-echo)
-nmap gN <Plug>(anzu-jump-N)<Plug>(anzu-echo-search-status)
 nmap * <Plug>(anzu-star-with-echo)
 nmap # <Plug>(anzu-sharp-with-echo)
 nnoremap <silent> <Esc><Esc> :noh<CR>
