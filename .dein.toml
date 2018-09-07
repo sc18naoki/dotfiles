@@ -122,3 +122,6 @@ repo = 'haya14busa/vim-edgemotion'
 
 [[plugins]]
 repo = 'andymass/vim-tradewinds'
+
+[[plugins]]
+repo = 'vim-scripts/renamer.vim'
