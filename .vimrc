@@ -4,12 +4,17 @@
 "----------------------------------------------------------------------------
 "configuration
 "----------------------------------------------------------------------------
+"init
+scriptencoding utf-8
 "appearance
 set number
 set display=lastline
 set pumheight=10
 set statusline=%y\ %r%h%w%-0.37f%m%=ROW=%l/%L,COL=%c\ %{ObsessionStatus()}%{LinterStatus()}
 set laststatus=2
+set ambiwidth=double
+set clipboard+=unnamedplus
+set completeopt-=preview
 "backup
 set backup
 set backupdir=~/.local/share/nvim/backup 
@@ -75,22 +80,18 @@ nnoremap <silent>- 3<C-w><
 "gf
 nnoremap <C-w>f :vertical rightbelow wincmd f<CR>
 nnoremap <C-w>gf :rightbelow wincmd f<CR>
+"ctags
+set tags=.tags;~
 "tag jump
 nnoremap <C-w>] :vertical rightbelow wincmd ]<CR>
 nnoremap <C-w><C-]> :rightbelow wincmd ]<CR>
-"hide preview window
-set completeopt-=preview
 "remenber last cursor position
 augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
   \ exe "normal g`\"" | endif
 augroup END
-"clipboard integration
-set clipboard+=unnamedplus
-"multibyte rendering
-set ambiwidth=double
-""system
-"decrease delay from 4000(=default) to 100
+"others
+set autoread
 set updatetime=100
 
 ""keybindings
@@ -104,8 +105,8 @@ nnoremap [sub]s :%s///gI<Left><Left><Left><Left>
 nnoremap <silent> [sub]d :DiffOrig<CR>
 "buffer
 set hidden
-nnoremap <silent> [sub]n :bn<CR>
-nnoremap <silent> [sub]p :bp<CR>
+nnoremap <silent> [sub]n :bnext<CR>
+nnoremap <silent> [sub]p :bprev<CR>
 nnoremap <silent> <Leader>q :BD<CR>
 nnoremap <silent> <Leader>Q :BufDel<CR>
 "fzf.vim
@@ -154,7 +155,7 @@ nnoremap <silent> <Leader>G :GitGutterToggle<CR>
 "scrollbind shortcut
 nnoremap <silent> <Leader>b :call ScrollBind()<CR>
 
-""function
+""functions{{{
 "DeleteHiddenBuffers = delete hidden buffer
 function DeleteHiddenBuffers()
     let tpbl=[]
@@ -218,13 +219,13 @@ function! ScrollBind(...)
   else
     let g:scb_pos = {}
   endif
-endfunction
+endfunction"}}}
 
-""tab
+""tab{{{
 function! s:SID_PREFIX()
   return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
 endfunction
-function! s:my_tabline()  "{{{
+function! s:my_tabline()
   let s = ''
   for i in range(1, tabpagenr('$'))
     let bufnrs = tabpagebuflist(i)
@@ -241,7 +242,7 @@ function! s:my_tabline()  "{{{
   endfor
   let s .= '%#TabLineFill#%T%=%#TabLine#'
   return s
-endfunction "}}}
+endfunction
 let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
 set showtabline=2
 "prefix
@@ -261,47 +262,21 @@ nnoremap <silent> [Tab]p :tabprevious<CR>
 nnoremap <silent> [Tab]P :tabfir<CR>
 nnoremap <silent> [Tab]<C-]> <C-w><C-]><C-w>T
 nnoremap <silent> [Tab]f <C-w>gf
-nnoremap <silent> [Tab]m :wincmd T<CR>
+nnoremap <silent> [Tab]m :wincmd T<CR>"}}}
 
-"autocmds
-augroup KeywordPrgs
-  autocmd!
-  autocmd Filetype vim set keywordprg=:help
-augroup END
-augroup QQuits
-  autocmd!
-  autocmd FileType help,diff,Preview,ref* nnoremap <buffer> q <C-w>c
-augroup END
-augroup RubyConf
-  autocmd!
-  autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 iskeyword+=?
-augroup END
-augroup FTrecognitions
-    autocmd!
-    autocmd BufNewFile,BufRead *.xaml setfiletype xml
-augroup END
-
-""externals
-"ctags;search ".tags" file until $HOME
-set tags=.tags;~
-
-"""project specific configuration
-"" -> "/[projectpath]/.pvimrc" to load
-"augroup ProjectVim
+"""project specific configuration -> locate .vimlocal when to load"{{{
+"augroup vimrc_local
 "  autocmd!
 "  autocmd BufEnter * call s:vimrc_local(expand('<afile>:p:h'))
 "augroup END
-"
 "function! s:vimrc_local(loc)
-"  let files = findfile('.pvimrc', escape(a:loc, ' ') . ';', -1)
+"  let files = findfile('.vimlocal', escape(a:loc, ' ') . ';', -1)
 "  for i in reverse(filter(files, 'filereadable(v:val)'))
 "    source `=i`
 "  endfor
-"endfunction
+"endfunction}}}
 
-"----------------------------------------------------------------------------
-"plugin initialization
-"----------------------------------------------------------------------------
+"plugin initialization{{{
 let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
@@ -324,15 +299,26 @@ endif
 
 if dein#check_install()
   call dein#install()
-endif
+endif"}}}
 
 "----------------------------------------------------------------------------
 "finalize
 "----------------------------------------------------------------------------
 filetype plugin indent on
 syntax on
+"autocmds
+augroup vimrc
+    autocmd!
+    autocmd Filetype vim set keywordprg=:help
+    autocmd Filetype vim setlocal foldmethod=marker
+    autocmd FileType help,diff,Preview,ref* nnoremap <buffer> q <C-w>c
+    autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 iskeyword+=?
+    autocmd BufNewFile,BufRead *.xaml setfiletype xml
+    autocmd ColorScheme * highlight Normal ctermbg=none
+    autocmd ColorScheme * highlight LineNr ctermbg=none
+augroup END
 "colorscheme
-colorscheme dante
+colorscheme railscasts
 "highlight
 highlight HighlightWords ctermfg=black ctermbg=yellow
 match HighlightWords /TODO\|NOTE\|MEMO/
