@@ -44,6 +44,8 @@ set backspace=indent,eol,start
 nnoremap Y y$
 "x w/o register
 nnoremap x "_x
+"CTRL-G with full file path
+nnoremap <C-g> 1<C-g>
 "insert blank line
 nmap <silent> go :<C-u>call append(expand('.'), '')<Cr>j
 "increment/decrement by ignoring minus-prefix
