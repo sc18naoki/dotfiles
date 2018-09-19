@@ -10,7 +10,7 @@ scriptencoding utf-8
 set number
 set display=lastline
 set pumheight=10
-set statusline=%y\ %r%h%w%-0.37f%m%=ROW=%l/%L,COL=%c\ %{ObsessionStatus()}%{LinterStatus()}
+set statusline=%y\ %r%h%w%-0.37f%m%=ROW=%l/%L,COL=%c\ %{ObsessionStatus('[$:loading]','[$:paused]')}%{LinterStatus()}
 set laststatus=2
 set ambiwidth=double
 set clipboard+=unnamedplus

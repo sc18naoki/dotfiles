@@ -33,7 +33,7 @@ bindkey -e
 export MANPAGER="nvim -c 'set ft=man' -"
 export XDG_CONFIG_HOME=~/.config
 # PATH
-PATH="/home/naoki/usr/local/anaconda3/bin:/home/naoki/usr/bin:/home/naoki/.config/composer/vendor/bin:$PATH"
+PATH="/home/naoki/usr/local/anaconda3/bin:/home/naoki/usr/bin:/home/naoki/usr/local/bin:/home/naoki/.config/composer/vendor/bin:$PATH"
 # LANGUAGE
 # -> go
 export GOPATH="$HOME/usr/local/go"
