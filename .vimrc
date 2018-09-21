@@ -53,13 +53,11 @@ nmap <silent> g<C-a> <Plug>(trip-increment-ignore-minus)
 nmap <silent> g<C-x> <Plug>(trip-decrement-ignore-minus)
 "cursor:normal mode
 nnoremap j gj
-nnoremap gj j
 nnoremap k gk
-nnoremap gk k
 nnoremap gh ^
 nnoremap gl $
-nmap <C-j> <Plug>(edgemotion-j)
-nmap <C-k> <Plug>(edgemotion-k)
+nmap ]b <Plug>(edgemotion-j)
+nmap [b <Plug>(edgemotion-k)
 "cursor:insert mode
 inoremap <C-e> <C-o>$
 inoremap <C-a> <C-o>^
@@ -122,7 +120,8 @@ nnoremap <silent> [sub]/ :Lines<CR>
 nnoremap <silent> [sub]o :BTags<CR>
 nnoremap <silent> [sub]t :Tags<CR>
 nnoremap <silent> [sub]f :Files<CR>
-nnoremap <silent> [sub]g :Ag<CR>
+nnoremap <silent> [sub]g :FAg<CR>
+nnoremap <silent> [sub]G :Ag<CR>
 nnoremap <silent> [sub]? :Commands<CR>
 nnoremap <silent> [sub]h :Helptags<CR>
 "neosnippet

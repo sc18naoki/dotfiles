@@ -53,7 +53,7 @@ repo = 'junegunn/fzf.vim'
 depends = 'fzf'
 hook_add = '''
   let g:fzf_tags_command = 'ctags -R -f .tags'
-  command! -bang -nargs=* Ag call
+  command! -bang -nargs=* FAg call
     \ fzf#vim#ag(<q-args>,{'options': '--delimiter : --nth 4..'},<bang>0)
   command! -bang -nargs=* Files call
     \ fzf#vim#files(<q-args>,
@@ -122,6 +122,3 @@ repo = 'haya14busa/vim-edgemotion'
 
 [[plugins]]
 repo = 'andymass/vim-tradewinds'
-
-[[plugins]]
-repo = 'vim-scripts/renamer.vim'

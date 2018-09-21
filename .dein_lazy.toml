@@ -52,7 +52,7 @@ on_event = 'InsertCharPre'
 on_ft = ['snippet']
 depends = ['neosnippet-snippets']
 
-### per lang completion source
+### per lang config
 [[plugins]]
 repo = 'zchee/deoplete-jedi'
 on_ft = 'python'
@@ -87,3 +87,7 @@ on_ft = 'go'
 #  let g:OmniSharp_server_path = '/home/naoki/usr/local/omnisharp/omnisharp/Omnisharp.exe'
 #  let g:Omnisharp_server_use_mono = 1
 #'''
+
+[[plugins]]
+repo = 'blueyed/smarty.vim'
+on_ft = 'smarty'
