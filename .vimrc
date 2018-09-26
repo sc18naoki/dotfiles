@@ -107,7 +107,8 @@ nnoremap <silent> [sub]d :DiffOrig<CR>
 set hidden
 nnoremap <silent> [sub]n :bnext<CR>
 nnoremap <silent> [sub]p :bprev<CR>
-nnoremap <silent> <Leader>q :BD<CR>
+nnoremap <silent> <Leader>w :BD<CR>
+nnoremap <silent> <Leader>q :CleanEmptyBuffers<CR>
 nnoremap <silent> <Leader>Q :BufDel<CR>
 "fzf.vim
 nnoremap <silent> [sub]l :Buffers<CR>
@@ -126,8 +127,6 @@ nnoremap <silent> [sub]? :Commands<CR>
 nnoremap <silent> [sub]h :Helptags<CR>
 "neosnippet
 nnoremap <silent> [sub]e :NeoSnippetEdit<CR>
-"save/write
-nnoremap <Leader>W :w !sudo tee % > /dev/null
 "nerdtree
 nnoremap <silent> <Space>n :NERDTreeTabsToggle<CR>
 "undotree
@@ -154,7 +153,7 @@ nnoremap <silent> <Leader>A :ALEToggle<CR>
 "GitGutter: Toggle on/off
 nnoremap <silent> <Leader>G :GitGutterToggle<CR>
 "scrollbind shortcut
-nnoremap <silent> <Leader>b :call ScrollBind()<CR>
+nnoremap <silent> <Leader>s :call ScrollBind()<CR>
 
 ""functions{{{
 "DeleteHiddenBuffers = delete hidden buffer
@@ -166,6 +165,14 @@ function DeleteHiddenBuffers()
     endfor
 endfunction
 command! BufDel call DeleteHiddenBuffers()
+"CleanEmptyBuffers = delete empty buffers
+function! s:CleanEmptyBuffers()
+    let buffers = filter(range(1, bufnr('$')), 'buflisted(v:val) && empty(bufname(v:val)) && bufwinnr(v:val)<0 && !getbufvar(v:val, "&mod")')
+    if !empty(buffers)
+        exe 'bw ' . join(buffers, ' ')
+    endif
+endfunction
+command! CleanEmptyBuffers call s:CleanEmptyBuffers()
 "Diff = diff view
 function! s:vimdiff_in_newtab(...)
   if a:0 == 1
@@ -191,7 +198,7 @@ function! HandleURI()
     echo 'No URI found in line.'
   endif
 endfunction
-nnoremap <Leader>w :<C-u>call HandleURI()<CR>
+nnoremap <Leader>b :<C-u>call HandleURI()<CR>
 "ScrollBind = scrollbind both window
 function! ScrollBind(...)
   let l:curr_bufnr = bufnr('%')
