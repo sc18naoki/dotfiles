@@ -71,6 +71,10 @@ cnoremap <C-f> <Right>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 cnoremap <C-k> <C-E><C-U>
+"misspell correction
+cabbrev Q q
+cabbrev q1 q!
+cabbrev qa1 qa!
 "window control
 "resize
 nnoremap <silent>+ 3<C-w>+
