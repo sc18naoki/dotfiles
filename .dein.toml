@@ -122,3 +122,16 @@ repo = 'haya14busa/vim-edgemotion'
 
 [[plugins]]
 repo = 'andymass/vim-tradewinds'
+
+[[plugins]]
+repo = 't9md/vim-quickhl'
+
+[[plugins]]
+repo = 'autozimu/LanguageClient-neovim'
+rev = 'next'
+build = 'bash install.sh'
+hook_add = '''
+  let g:LanguageClient_serverCommands = {
+  \ 'python': ['pyls']
+  \}
+'''

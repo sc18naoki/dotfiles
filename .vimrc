@@ -137,6 +137,9 @@ nnoremap <silent> <Space>n :NERDTreeTabsToggle<CR>
 nnoremap <silent> <Space>u :MundoToggle<CR>
 "tagbar
 nnoremap <silent> <Space>t :TagbarToggle<CR>
+"quickhl
+nmap <Space>h <plug>(quickhl-manual-this)
+nmap <Space>H <plug>(quickhl-manual-reset)
 "git:fugitive;fzf;GitGutter
 nnoremap [git] <Nop>
 nmap <Space>g [git]
@@ -144,8 +147,8 @@ nnoremap <silent> [git]s :Gstatus<CR>
 nnoremap <silent> [git]d :Gvdiff<CR>
 nnoremap <silent> [git]m :GFiles?<CR>
 nnoremap <silent> [git]v :GitGutterPreviewHunk<CR><C-w>b
-nnoremap <silent> [git]p :GitGutterPrevHunk<CR>
-nnoremap <silent> [git]n :GitGutterNextHunk<CR>
+nnoremap <silent> [d :GitGutterPrevHunk<CR>
+nnoremap <silent> ]d :GitGutterNextHunk<CR>
 nnoremap <silent> [git]b :Gblame<CR>
 nnoremap <silent> [git]c :BCommits<CR>
 nnoremap <silent> [git]l :Commits<CR>
@@ -157,7 +160,7 @@ nnoremap <silent> <Leader>A :ALEToggle<CR>
 "GitGutter: Toggle on/off
 nnoremap <silent> <Leader>G :GitGutterToggle<CR>
 "scrollbind shortcut
-nnoremap <silent> <Leader>s :call ScrollBind()<CR>
+nnoremap <silent> <Leader>b :call ScrollBind()<CR>
 
 ""functions{{{
 "DeleteHiddenBuffers = delete hidden buffer
@@ -192,17 +195,6 @@ endfunction
 command! -bar -nargs=+ -complete=file Diff  call s:vimdiff_in_newtab(<f-args>)
 "DiffOrig = show modified from last change
 command DiffOrig tabedit % | rightb vert new | set buftype=nofile | read ++edit # | 0d_| diffthis | wincmd p | diffthis
-"HandleURI = open url with preset browser
-function! HandleURI()
-  let l:uri = matchstr(getline('.'), '[a-z]*:\/\/[^ >,;:]*')
-  echo l:uri
-  if l:uri !=# ''
-    exec "!xdg-open \"" . l:uri . "\""
-  else
-    echo 'No URI found in line.'
-  endif
-endfunction
-nnoremap <Leader>b :<C-u>call HandleURI()<CR>
 "ScrollBind = scrollbind both window
 function! ScrollBind(...)
   let l:curr_bufnr = bufnr('%')
@@ -288,7 +280,8 @@ nnoremap <silent> [Tab]m :wincmd T<CR>"}}}
 "  endfor
 "endfunction}}}
 
-"plugin initialization{{{
+"plugin settings{{{
+"dein
 let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
@@ -311,7 +304,15 @@ endif
 
 if dein#check_install()
   call dein#install()
-endif"}}}
+endif
+"LSP
+augroup Pyls
+    autocmd!
+    autocmd Filetype python nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+    autocmd Filetype python nnoremap <silent> <C-]> :call LanguageClient_textDocument_definition()<CR>
+    autocmd Filetype python nnoremap <silent> <C-\> :call LanguageClient_textDocument_references()<CR>
+    autocmd Filetype python nnoremap <silent> <Leader>f :call LanguageClient_formatting()<CR>
+augroup END"}}}
 
 "----------------------------------------------------------------------------
 "finalize

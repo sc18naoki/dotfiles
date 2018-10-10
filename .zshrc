@@ -45,6 +45,8 @@ alias gsl='git stash list'
 alias gsd='git diff `git stash list|cut -d':' -f1|fzf`'
 alias gsa='(){ TARGETSTASH=`git stash list|cut -d':' -f1|fzf`; if [ -z ${TARGETSTASH} ];then echo "APPLY not done"; else git stash apply ${TARGETSTASH}; unset TARGETSTASH ;fi }'
 alias gsr='(){ TARGETSTASH=`git stash list|cut -d':' -f1|fzf`; if [ -z ${TARGETSTASH} ];then echo "APPLY REVESE not done"; else git stash show ${TARGETSTASH} -p|git apply --reverse; unset TARGETSTASH ;fi }'
+alias gwl='git worktree list'
+alias gls='ghq list'
 # cd shortcut
 alias hcd='cd ~/Documents/GoogleDrive/help'
 alias ccd='cd ~/.ghq/github.com/sc18naoki/dotfiles/'
