@@ -37,6 +37,8 @@ nmap n <Plug>(anzu-n-with-echo)
 nmap N <Plug>(anzu-N-with-echo)
 nmap * <Plug>(anzu-star-with-echo)
 nmap # <Plug>(anzu-sharp-with-echo)
+vnoremap / <ESC>/\%V
+vnoremap ? <ESC>?\%V
 nnoremap <silent> <Esc><Esc> :noh<CR>
 "backspace for deletion
 set backspace=indent,eol,start
@@ -258,6 +260,7 @@ for n in range(1, 9)
 endfor
 "new,close(only),next(last),previous(first),tag,path,move
 nnoremap <silent> [Tab]t :tablast <bar> tabnew<CR>
+nnoremap <silent> [Tab]<C-t> :tabnew<CR>
 nnoremap <silent> [Tab]w :tabclose<CR>
 nnoremap <silent> [Tab]o :tabonly<CR>
 nnoremap <silent> [Tab]n :tabnext<CR>
