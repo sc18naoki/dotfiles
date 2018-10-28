@@ -4,7 +4,7 @@
 "----------------------------------------------------------------------------
 "configuration
 "----------------------------------------------------------------------------
-"init
+"init{{{
 scriptencoding utf-8
 "appearance
 set number
@@ -37,8 +37,7 @@ nmap n <Plug>(anzu-n-with-echo)
 nmap N <Plug>(anzu-N-with-echo)
 nmap * <Plug>(anzu-star-with-echo)
 nmap # <Plug>(anzu-sharp-with-echo)
-vnoremap / <ESC>/\%V
-vnoremap ? <ESC>?\%V
+vnoremap * y/<C-R>"<CR>
 nnoremap <silent> <Esc><Esc> :noh<CR>
 "backspace for deletion
 set backspace=indent,eol,start
@@ -89,8 +88,8 @@ nnoremap <C-w>gf :rightbelow wincmd f<CR>
 "ctags
 set tags=.tags;~
 "tag jump
-nnoremap <C-w>] :vertical rightbelow wincmd ]<CR>
-nnoremap <C-w><C-]> :rightbelow wincmd ]<CR>
+nnoremap <silent> <C-w>] :vertical rightbelow wincmd ]<CR><C-g>
+nnoremap <silent> <C-w><C-]> :rightbelow wincmd ]<CR><C-g>
 "remenber last cursor position
 augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -98,9 +97,9 @@ augroup vimrcEx
 augroup END
 "others
 set autoread
-set updatetime=100
+set updatetime=100"}}}
 
-""keybindings
+""keybindings{{{
 "prefix
 nnoremap [sub] <Nop>
 nmap s [sub]
@@ -141,8 +140,10 @@ nnoremap <silent> <Space>u :MundoToggle<CR>
 nnoremap <silent> <Space>t :TagbarToggle<CR>
 "quickhl
 nmap <Space>h <plug>(quickhl-manual-this)
+vmap <Space>h <plug>(quickhl-manual-this)
 nmap <Space>H <plug>(quickhl-manual-reset)
 "git:fugitive;fzf;GitGutter
+set nofixeol
 nnoremap [git] <Nop>
 nmap <Space>g [git]
 nnoremap <silent> [git]s :Gstatus<CR>
@@ -162,7 +163,7 @@ nnoremap <silent> <Leader>A :ALEToggle<CR>
 "GitGutter: Toggle on/off
 nnoremap <silent> <Leader>G :GitGutterToggle<CR>
 "scrollbind shortcut
-nnoremap <silent> <Leader>b :call ScrollBind()<CR>
+nnoremap <silent> <Leader>b :call ScrollBind()<CR>"}}}
 
 ""functions{{{
 "DeleteHiddenBuffers = delete hidden buffer
@@ -269,7 +270,9 @@ nnoremap <silent> [Tab]p :tabprevious<CR>
 nnoremap <silent> [Tab]P :tabfir<CR>
 nnoremap <silent> [Tab]<C-]> <C-w><C-]><C-w>T
 nnoremap <silent> [Tab]f <C-w>gf
-nnoremap <silent> [Tab]m :wincmd T<CR>"}}}
+nnoremap <silent> [Tab]m :wincmd T<CR>
+nnoremap <silent> [Tab]h :tabm -1<CR>
+nnoremap <silent> [Tab]l :tabm +1<CR>"}}}
 
 """project specific configuration -> locate .vimlocal when to load"{{{
 "augroup vimrc_local
