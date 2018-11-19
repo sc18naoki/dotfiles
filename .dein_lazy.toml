@@ -1,4 +1,5 @@
 ### .dein_lazy.toml
+# そろそろon_ftのやつを定数化した方が楽な気がする。
 
 [[plugins]]
 repo = 'thinca/vim-quickrun'

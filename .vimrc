@@ -259,20 +259,23 @@ nmap    t [Tab]
 for n in range(1, 9)
   execute 'nnoremap <silent> [Tab]'.n  ':<C-u>tabnext'.n.'<CR>'
 endfor
-"new,close(only),next(last),previous(first),tag,path,move
+"new,new(to next),clone,close(only),next(last),previous(first),tag,path,move
 nnoremap <silent> [Tab]t :tablast <bar> tabnew<CR>
 nnoremap <silent> [Tab]<C-t> :tabnew<CR>
+nnoremap <silent> [Tab]T :tabe % <bar> tabm $<CR>
 nnoremap <silent> [Tab]w :tabclose<CR>
 nnoremap <silent> [Tab]o :tabonly<CR>
 nnoremap <silent> [Tab]n :tabnext<CR>
 nnoremap <silent> [Tab]N :tabl<CR>
 nnoremap <silent> [Tab]p :tabprevious<CR>
 nnoremap <silent> [Tab]P :tabfir<CR>
-nnoremap <silent> [Tab]<C-]> <C-w><C-]><C-w>T
+nnoremap <silent> [Tab]<C-]> <C-w><C-]><C-w>T<C-g>
 nnoremap <silent> [Tab]f <C-w>gf
 nnoremap <silent> [Tab]m :wincmd T<CR>
 nnoremap <silent> [Tab]h :tabm -1<CR>
-nnoremap <silent> [Tab]l :tabm +1<CR>"}}}
+nnoremap <silent> [Tab]l :tabm +1<CR>
+nnoremap <silent> [Tab]H :tabm 0<CR>
+nnoremap <silent> [Tab]L :tabm $<CR>"}}}
 
 """project specific configuration -> locate .vimlocal when to load"{{{
 "augroup vimrc_local
@@ -311,14 +314,14 @@ endif
 if dein#check_install()
   call dein#install()
 endif
-"LSP
-augroup Pyls
-    autocmd!
-    autocmd Filetype python nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-    autocmd Filetype python nnoremap <silent> <C-]> :call LanguageClient_textDocument_definition()<CR>
-    autocmd Filetype python nnoremap <silent> <C-\> :call LanguageClient_textDocument_references()<CR>
-    autocmd Filetype python nnoremap <silent> <Leader>f :call LanguageClient_formatting()<CR>
-augroup END"}}}
+""LSP
+"augroup LSP
+"    autocmd!
+"    autocmd Filetype python nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+"    autocmd Filetype python nnoremap <silent> <C-]> :call LanguageClient_textDocument_definition()<CR>
+"    autocmd Filetype python nnoremap <silent> <C-\> :call LanguageClient_textDocument_references()<CR>
+"    autocmd Filetype python nnoremap <silent> <Leader>f :call LanguageClient_formatting()<CR>
+"augroup END"}}}
 
 "----------------------------------------------------------------------------
 "finalize
@@ -336,6 +339,7 @@ augroup vimrc
     autocmd ColorScheme * highlight Normal ctermbg=none
     autocmd ColorScheme * highlight LineNr ctermbg=none
 augroup END
+"design{{{
 "colorscheme
 colorscheme railscasts
 "highlight
@@ -346,4 +350,4 @@ highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=22
 highlight DiffDelete cterm=bold ctermfg=10 ctermbg=52
 highlight DiffChange cterm=bold ctermfg=10 ctermbg=17
 highlight DiffText   cterm=bold ctermfg=10 ctermbg=21
-highlight NonText cterm=bold ctermfg=248 guifg=248
+highlight NonText cterm=bold ctermfg=248 guifg=248"}}}
