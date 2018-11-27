@@ -47,7 +47,6 @@ alias gsd='git diff `git stash list|cut -d':' -f1|fzf`'
 alias gsa='(){ TARGETSTASH=`git stash list|cut -d':' -f1|fzf`; if [ -z ${TARGETSTASH} ];then echo "APPLY not done"; else git stash apply ${TARGETSTASH}; unset TARGETSTASH ;fi }'
 alias gsr='(){ TARGETSTASH=`git stash list|cut -d':' -f1|fzf`; if [ -z ${TARGETSTASH} ];then echo "APPLY REVESE not done"; else git stash show ${TARGETSTASH} -p|git apply --reverse; unset TARGETSTASH ;fi }'
 alias gco='(){ TARGETBRANCH=`git branch|sed "s/ *//g"|fzf`; if [ -n ${TARGETBRANCH} ]; then git checkout $TARGETBRANCH; unset TARGETBRANCH; fi }'
-alias gls='ghq list'
 # cd shortcut
 alias hcd='cd ~/Documents/GoogleDrive/help'
 alias ccd='cd ~/.ghq/github.com/sc18naoki/dotfiles/'
@@ -91,7 +90,7 @@ cd () {
 
 ## plugin(if there were)
 
-# tmux; this line is prerequisite, not working with .zprofile
+# tmux
 [[ -z "$TMUX" && ! -z "$PS1" ]] && tmux
 set -o ignoreeof # stop tmux from exiting with C-d 
 

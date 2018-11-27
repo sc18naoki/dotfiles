@@ -135,7 +135,3 @@ repo = 't9md/vim-quickhl'
 #  \ 'python': ['pyls']
 #  \}
 #'''
-
-### 使いたいけど日本語が化ける。日本語のコミットメッセージ死ねよ。
-#[[plugins]]
-#repo = 'junegunn/gv.vim'

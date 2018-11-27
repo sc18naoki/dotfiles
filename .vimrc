@@ -277,19 +277,22 @@ nnoremap <silent> [Tab]l :tabm +1<CR>
 nnoremap <silent> [Tab]H :tabm 0<CR>
 nnoremap <silent> [Tab]L :tabm $<CR>"}}}
 
-"""project specific configuration -> locate .vimlocal when to load"{{{
-"augroup vimrc_local
-"  autocmd!
-"  autocmd BufEnter * call s:vimrc_local(expand('<afile>:p:h'))
-"augroup END
-"function! s:vimrc_local(loc)
-"  let files = findfile('.vimlocal', escape(a:loc, ' ') . ';', -1)
-"  for i in reverse(filter(files, 'filereadable(v:val)'))
-"    source `=i`
-"  endfor
-"endfunction}}}
+""project specific configuration -> locate .vimrc_local when to load{{{
+augroup vimrc_local
+  autocmd!
+  autocmd BufEnter * call s:vimrc_local(expand('<afile>:p:h'))
+augroup END
+function! s:vimrc_local(loc)
+  let files = findfile('.vimrc_local', escape(a:loc, ' ') . ';', -1)
+  for i in reverse(filter(files, 'filereadable(v:val)'))
+    source `=i`
+  endfor
+endfunction"}}}
 
-"plugin settings{{{
+"----------------------------------------------------------------------------
+"plugin configs
+"----------------------------------------------------------------------------
+"plugin init{{{
 "dein
 let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
@@ -313,15 +316,19 @@ endif
 
 if dein#check_install()
   call dein#install()
-endif
-""LSP
-"augroup LSP
+endif"}}}
+"LSP
+augroup LSP
+    autocmd!
+    autocmd BufEnter __LanguageClient__ nnoremap <buffer> q <C-w>c
+augroup END
+"augroup Pyls
 "    autocmd!
 "    autocmd Filetype python nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 "    autocmd Filetype python nnoremap <silent> <C-]> :call LanguageClient_textDocument_definition()<CR>
 "    autocmd Filetype python nnoremap <silent> <C-\> :call LanguageClient_textDocument_references()<CR>
 "    autocmd Filetype python nnoremap <silent> <Leader>f :call LanguageClient_formatting()<CR>
-"augroup END"}}}
+"augroup END
 
 "----------------------------------------------------------------------------
 "finalize
@@ -339,7 +346,6 @@ augroup vimrc
     autocmd ColorScheme * highlight Normal ctermbg=none
     autocmd ColorScheme * highlight LineNr ctermbg=none
 augroup END
-"design{{{
 "colorscheme
 colorscheme railscasts
 "highlight
@@ -350,4 +356,4 @@ highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=22
 highlight DiffDelete cterm=bold ctermfg=10 ctermbg=52
 highlight DiffChange cterm=bold ctermfg=10 ctermbg=17
 highlight DiffText   cterm=bold ctermfg=10 ctermbg=21
-highlight NonText cterm=bold ctermfg=248 guifg=248"}}}
+highlight NonText cterm=bold ctermfg=248 guifg=248
