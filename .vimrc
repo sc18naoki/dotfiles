@@ -4,7 +4,7 @@
 "----------------------------------------------------------------------------
 "configuration
 "----------------------------------------------------------------------------
-"init{{{
+""init{{{
 scriptencoding utf-8
 "appearance
 set number
@@ -100,7 +100,7 @@ set autoread
 set updatetime=100"}}}
 
 ""keybindings{{{
-"prefix
+"subcommands
 nnoremap [sub] <Nop>
 nmap s [sub]
 "substituiton
